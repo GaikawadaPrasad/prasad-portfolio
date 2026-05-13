@@ -1,6 +1,4 @@
 import "./App.css";
-
-import { LoadingScreen } from "./assets/LoadingScreen";
 import { Navbar } from "./assets/Components/Navbar";
 import { MobileMenu } from "./assets/Components/MobileMenu";
 import { Home } from "./assets/Components/Home";
@@ -13,7 +11,6 @@ import { Footer } from "./assets/Components/Footer";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [loaded, setLoaded] = useState(false);
   const [mobileView, setMobileView] = useState(false);
 
   const [darkMode, setDarkMode] = useState(true);
@@ -30,12 +27,8 @@ function App() {
  
   return (
     <>
-      {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
       <div
-        className={`min-h-screen transition-opacity duration-900 animation-slide  ${
-          loaded ? "opacity-100" : "opacity-0"
-        } 
-        ${darkMode ? "bg-black text-gray-100" : "bg-white text-black-100"} `}
+        className={`min-h-screen ${darkMode ? "bg-black text-gray-100" : "bg-white text-black-100"}`}
       >
         <Navbar
           mobileView={mobileView}
