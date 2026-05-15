@@ -21,9 +21,9 @@ export const Contact = ({ getTheme }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState("");
 
-  const service_id = "service_6ybecqm";
-  const template_id = "template_ih7a4yi";
-  const template_id_reply = "template_nxpnmya";
+  const service_id = "service_kx1qjdj";
+  const template_id = "template_oziconp";
+  const template_id_reply = "template_oziconp";
   const public_key = "aORidiTZGt5beCvS_";
 
   useEffect(() => {
@@ -141,7 +141,7 @@ export const Contact = ({ getTheme }) => {
                     ? "bg-black text-white border-black hover:bg-white hover:text-black active:bg-gray-300"
                     : "bg-white text-black border-white hover:bg-black hover:text-white active:bg-gray-900"
                 }`}
-                onClick={isLoading}
+                disabled={isLoading}
               >
                 {isLoading ? "Sending..." : "Send Message"}
               </button>
