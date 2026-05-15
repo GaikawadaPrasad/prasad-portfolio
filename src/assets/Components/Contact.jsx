@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,
   faInstagram,
-  faFacebook,
+  // faFacebook,
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 
@@ -189,7 +189,7 @@ export const Contact = ({ getTheme }) => {
                 >
                   <FontAwesomeIcon icon={faInstagram} size="2x" />
                 </a>
-                <a
+                {/* <a
                   href="https://www.facebook.com/profile.php?id=100039413592661"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -200,9 +200,9 @@ export const Contact = ({ getTheme }) => {
                   } transition-transform transform hover:scale-110`}
                 >
                   <FontAwesomeIcon icon={faFacebook} size="2x" />
-                </a>
+                </a> */}
                 <a
-                  href="https://github.com/princeprasad24"
+                  href="https://github.com/GaikawadaPrasad"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`${
