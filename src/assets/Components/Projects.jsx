@@ -1,8 +1,6 @@
 import { RevealOnScroll } from "../RevealOnScroll";
 
 export const Projects = ({ getTheme }) => {
-  
-
   const projectsCard = [
     {
       title: "Gaming Website",
@@ -11,22 +9,39 @@ export const Projects = ({ getTheme }) => {
       link: "https://vdp-gaming-hub.netlify.app/",
     },
     {
-      title: "Weather App",
-      desc: "A user-friendly application that displays current weather details for any city entered by the user. It shows key information like temperature, humidity, and weather conditions.",
-      techs: ["HTML", "CSS", "React"],
-      link: "https://vdp-weather-app.vercel.app/",
+      title: "RoyaleStats",
+      desc: "A real-time statistics web application built using Java and Spring Boot that integrates with the Clash Royale API to fetch and display live player and clan data. Features REST API integration, JSON parsing, exception handling, and dynamic data rendering.",
+      techs: ["Java", "Spring Boot", "REST API", "HTML", "CSS"],
+      link: "https://github.com/GaikawadaPrasad/RoyaleStats-frontend",
     },
     {
-      title: "Password Strength Checker",
-      desc: "A helpful tool that analyzes the strength of user-entered passwords. Provides real-time feedback on password quality based on length, character variety, and overall security level.",
-      techs: ["HTML", "CSS", "React"],
-      link: "https://vdp-pwd-strength.vercel.app/",
+      title: "Habit Tracker",
+      desc: "A habit tracking application designed to help users build consistent daily routines using secure authentication and real-time data synchronization. Features habit management, progress tracking, and responsive user interaction.",
+      techs: [
+        "React.js",
+        "Firebase Authentication",
+        "Firebase Realtime Database",
+      ],
+      link: "https://your-project-link.com",
     },
+    // {
+    //   title: "Password Strength Checker",
+    //   desc: "A helpful tool that analyzes the strength of user-entered passwords. Provides real-time feedback on password quality based on length, character variety, and overall security level.",
+    //   techs: ["HTML", "CSS", "React"],
+    //   link: "https://vdp-pwd-strength.vercel.app/",
+    // },
     {
-      title: "To-Do List",
-      desc: "A simple and efficient to-do list app to help users manage daily tasks. Users can add, delete, and mark tasks as completed with ease.",
-      techs: ["HTML", "CSS", "React"],
-      link: "https://vdp-todo-list.vercel.app/",
+      title: "Chat Karo",
+      desc: "A real-time chat application built using the MERN stack that enables secure one-to-one messaging with user authentication and instant communication using Socket.io.",
+      techs: [
+        "MongoDB",
+        "Express.js",
+        "React.js",
+        "Node.js",
+        "Socket.io",
+        "React Hot Toast",
+      ],
+      link: "https://github.com/GaikawadaPrasad/",
     },
   ];
 
