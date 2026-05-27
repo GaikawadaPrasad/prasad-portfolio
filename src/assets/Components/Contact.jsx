@@ -8,6 +8,7 @@ import {
   // faFacebook,
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
+import { faFile, faFileAlt } from "@fortawesome/free-solid-svg-icons";
 
 export const Contact = ({ getTheme }) => {
 
@@ -65,25 +66,22 @@ export const Contact = ({ getTheme }) => {
     <RevealOnScroll>
       <section
         id="contact"
-        className={`min-h-screen flex items-center justify-center py-20 animation-slide ${
-          getTheme
-            ? "bg-gradient-to-t from-white-900 to-black"
-            : "bg-gradient-to-t from-black-900 to-white"
-        }`}
+        className={`min-h-screen flex items-center justify-center py-20 animation-slide ${getTheme
+          ? "bg-gradient-to-t from-white-900 to-black"
+          : "bg-gradient-to-t from-black-900 to-white"
+          }`}
       >
         <div className="max-w-6xl mx-auto px-4 w-full">
           <h2
-            className={`text-4xl font-extrabold mb-10 text-center ${
-              getTheme ? "text-white" : "text-black"
-            }`}
+            className={`text-4xl font-extrabold mb-10 text-center ${getTheme ? "text-white" : "text-black"
+              }`}
           >
             Contact Me
           </h2>
 
           <div
-            className={`bg-white/5 backdrop-blur-md rounded-2xl py-10 px-10 border border-white/20 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-white/20 ${
-              getTheme ? "text-white" : "text-black"
-            }`}
+            className={`bg-white/5 backdrop-blur-md rounded-2xl py-10 px-10 border border-white/20 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-white/20 ${getTheme ? "text-white" : "text-black"
+              }`}
           >
             <form className="space-y-6" onSubmit={handleSubmit}>
               <input
@@ -95,11 +93,10 @@ export const Contact = ({ getTheme }) => {
                 }
                 required
                 placeholder="Enter your Name"
-                className={`w-full bg-transparent border rounded px-4 py-3 ${
-                  getTheme
-                    ? "text-white placeholder-white/70 border-white/20 focus:border-white focus:bg-white/10"
-                    : "text-black placeholder-black/70 border-black/20 focus:border-black focus:bg-black/10"
-                } transition focus:outline-none`}
+                className={`w-full bg-transparent border rounded px-4 py-3 ${getTheme
+                  ? "text-white placeholder-white/70 border-white/20 focus:border-white focus:bg-white/10"
+                  : "text-black placeholder-black/70 border-black/20 focus:border-black focus:bg-black/10"
+                  } transition focus:outline-none`}
               />
 
               <input
@@ -111,11 +108,10 @@ export const Contact = ({ getTheme }) => {
                 }
                 required
                 placeholder="Enter your Email"
-                className={`w-full bg-transparent border rounded px-4 py-3 ${
-                  getTheme
-                    ? "text-white placeholder-white/70 border-white/20 focus:border-white focus:bg-white/10"
-                    : "text-black placeholder-black/70 border-black/20 focus:border-black focus:bg-black/10"
-                } transition focus:outline-none`}
+                className={`w-full bg-transparent border rounded px-4 py-3 ${getTheme
+                  ? "text-white placeholder-white/70 border-white/20 focus:border-white focus:bg-white/10"
+                  : "text-black placeholder-black/70 border-black/20 focus:border-black focus:bg-black/10"
+                  } transition focus:outline-none`}
               />
 
               <textarea
@@ -126,21 +122,19 @@ export const Contact = ({ getTheme }) => {
                 }
                 required
                 placeholder="Your Message"
-                className={`w-full bg-transparent border rounded px-4 py-3 ${
-                  getTheme
-                    ? "text-white placeholder-white/70 border-white/20 focus:border-white focus:bg-white/10"
-                    : "text-black placeholder-black/70 border-black/20 focus:border-black focus:bg-black/10"
-                } transition focus:outline-none`}
+                className={`w-full bg-transparent border rounded px-4 py-3 ${getTheme
+                  ? "text-white placeholder-white/70 border-white/20 focus:border-white focus:bg-white/10"
+                  : "text-black placeholder-black/70 border-black/20 focus:border-black focus:bg-black/10"
+                  } transition focus:outline-none`}
                 rows={5}
               />
 
               <button
                 type="submit"
-                className={`w-full py-3 px-6 rounded font-medium transition   ${
-                  getTheme
-                    ? "bg-black text-white border-black hover:bg-white hover:text-black active:bg-gray-300"
-                    : "bg-white text-black border-white hover:bg-black hover:text-white active:bg-gray-900"
-                }`}
+                className={`w-full py-3 px-6 rounded font-medium transition   ${getTheme
+                  ? "bg-black text-white border-black hover:bg-white hover:text-black active:bg-gray-300"
+                  : "bg-white text-black border-white hover:bg-black hover:text-white active:bg-gray-900"
+                  }`}
                 disabled={isLoading}
               >
                 {isLoading ? "Sending..." : "Send Message"}
@@ -158,9 +152,8 @@ export const Contact = ({ getTheme }) => {
 
             <div className="mt-12 text-center">
               <h3
-                className={`text-2xl font-semibold mb-6 ${
-                  getTheme ? "text-white" : "text-black"
-                }`}
+                className={`text-2xl font-semibold mb-6 ${getTheme ? "text-white" : "text-black"
+                  }`}
               >
                 Follow Me
               </h3>
@@ -169,11 +162,10 @@ export const Contact = ({ getTheme }) => {
                   href="https://www.linkedin.com/in/prasadgaikawada/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${
-                    getTheme
-                      ? "text-white hover:text-gray-300"
-                      : "text-black hover:text-gray-500"
-                  } transition-transform transform hover:scale-110`}
+                  className={`${getTheme
+                    ? "text-white hover:text-gray-300"
+                    : "text-black hover:text-gray-500"
+                    } transition-transform transform hover:scale-110`}
                 >
                   <FontAwesomeIcon icon={faLinkedin} size="2x" />
                 </a>
@@ -181,11 +173,10 @@ export const Contact = ({ getTheme }) => {
                   href="https://www.instagram.com/princeprasad_1/profilecard/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${
-                    getTheme
-                      ? "text-white hover:text-gray-300"
-                      : "text-black hover:text-gray-500"
-                  } transition-transform transform hover:scale-110`}
+                  className={`${getTheme
+                    ? "text-white hover:text-gray-300"
+                    : "text-black hover:text-gray-500"
+                    } transition-transform transform hover:scale-110`}
                 >
                   <FontAwesomeIcon icon={faInstagram} size="2x" />
                 </a>
@@ -205,14 +196,27 @@ export const Contact = ({ getTheme }) => {
                   href="https://github.com/GaikawadaPrasad"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${
-                    getTheme
-                      ? "text-white hover:text-gray-300"
-                      : "text-black hover:text-gray-500"
-                  } transition-transform transform hover:scale-110`}
+                  className={`${getTheme
+                    ? "text-white hover:text-gray-300"
+                    : "text-black hover:text-gray-500"
+                    } transition-transform transform hover:scale-110`}
                 >
                   <FontAwesomeIcon icon={faGithub} size="2x" />
                 </a>
+
+                <a
+                  href="https://drive.google.com/file/d/1GiIQHGwUThnbyUcdNp-A2lFJq9RnSskq/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${getTheme
+                    ? "text-white hover:text-gray-300"
+                    : "text-black hover:text-gray-500"
+                    } transition-transform transform hover:scale-110`}
+                >
+                  <FontAwesomeIcon icon={faFileAlt} size="2x" />
+                </a>
+
+
               </div>
             </div>
           </div>

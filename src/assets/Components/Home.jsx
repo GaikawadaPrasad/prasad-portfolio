@@ -51,7 +51,7 @@ export const Home = ({ getTheme }) => {
             </a>
 
             <a
-              href="https://drive.google.com/file/d/1aJZ4f2APLUj7rBadpxZD1V4g0ogWaagZ/view?usp=sharing"
+              href="https://drive.google.com/file/d/1GiIQHGwUThnbyUcdNp-A2lFJq9RnSskq/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className={`flex items-center gap-2 py-3 px-8 md:px-12 rounded-lg font-semibold shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl ${
