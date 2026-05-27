@@ -53,10 +53,10 @@ export const Projects = ({ getTheme }) => {
     },
     {
       id: 3,
-      badge: "B2B SaaS",
+      badge: "B2B ",
       title: "Sri Sri Associates",
       subtitle: "Financial Consulting Platform",
-      desc: "A comprehensive, secure B2B SaaS platform custom-built for a financial consulting and loan brokerage firm. Enables agents to submit customer leads with multi-document upload support, tracks lead status throughout a disbursed-to-rejected pipeline, integrates an interactive EMI calculator, and automates employee attendance, leave management, and monthly performance target tracking.",
+      desc: "A comprehensive, secure B2B  platform custom-built for a financial consulting and loan brokerage firm. Enables agents to submit customer leads with multi-document upload support, tracks lead status throughout a disbursed-to-rejected pipeline, integrates an interactive EMI calculator, and automates employee attendance, leave management, and monthly performance target tracking.",
       techs: [
         "React.js",
         "Node.js",
@@ -65,8 +65,7 @@ export const Projects = ({ getTheme }) => {
         "Mongoose",
         "Tailwind CSS",
         "JWT Auth",
-        "Cloudinary API",
-        "Framer Motion",
+        "Cloudinary API"
       ],
       images: [sriImg],
       link: "",
