@@ -62,6 +62,14 @@ export const Navbar = ({ mobileView, setMobileView, darkMode, setDarkMode }) => 
               Projects
             </a>
             <a
+              href="#featured"
+              className={` hover:text-white transition-colors ${
+                !darkMode ? "text-black" : "text-white"
+              } border-gray-400 duration-100 shadow-xl p-1 px-2 rounded`}
+            >
+              Featured
+            </a>
+            <a
               href="#contact"
               className={`hover:text-white transition-colors ${
                 !darkMode ? "text-black" : "text-gray/900 "

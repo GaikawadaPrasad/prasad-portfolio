@@ -51,6 +51,15 @@ export const MobileMenu = ({ mobileView, setMobileView, darkMode, setDarkMode })
         Projects
       </a>
       <a
+        href="#featured"
+        onClick={() => setMobileView(false)}
+        className={`text-xl font-semibold text-white my-4 transition-colors duration-200
+                    ${darkMode ? "text-black" : "text-white"}
+                    hover:text-white`}
+      >
+        Featured
+      </a>
+      <a
         href="#contact"
         onClick={() => setMobileView(false)}
         className={`text-xl font-semibold text-white my-4 transition-colors duration-200
