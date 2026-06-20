@@ -62,7 +62,7 @@ export const About = ({ getTheme }) => {
         id="about"
         className={`min-h-screen flex items-center py-20 px-6 md:px-12 animation-slide ${
           getTheme
-            ? "bg-linear-to-t from-black to-[#5b5a5a3e]"
+            ? " bg-linear-to-t from-[#5b5a5a3e] via-black to-[#5b5a5a3e]"
             : "bg-linear-to-t from-black-900 to-white"
         }`}
       >
