@@ -12,8 +12,8 @@ export const Home = ({ getTheme }) => {
         id="home"
         className={`min-h-screen flex items-center justify-center relative ${
           getTheme
-            ? "bg-gradient-to-t from-white-900  to-black"
-            : "bg-gradient-to-t from-black-900  to-white"
+            ? "bg-linear-to-t from-[#5b5a5a3e] to-black"
+            : "bg-linear-to-t from-black-900  to-white"
         } overflow-hidden`}
       >
         <div

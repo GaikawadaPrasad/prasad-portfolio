@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
 
 export const About = ({ getTheme }) => {
@@ -6,7 +7,7 @@ export const About = ({ getTheme }) => {
   const SkillCard = ({ title, skills }) => (
     <div
       className={`p-6 rounded-xl ${
-        getTheme ? "bg-white/5" : "bg-black/5"
+        getTheme ? "bg-linear-to-t from-black to-[#5b5a5a24]" : "bg-black/5"
       } hover:-translate-y-1 transition-transform duration-300 shadow-md max-w-full`}
     >
       <h3
@@ -26,7 +27,7 @@ export const About = ({ getTheme }) => {
 
   const SkillBadge = ({ label }) => (
     <span
-      className={`bg-white/10 ${
+      className={`bg-linear-to-t from-black to-[#5b5a5a3e] ${
         getTheme ? "text-white hover:bg-black" : "text-black hover:bg-white"
       } py-1 px-3 rounded-full text-sm font-medium shadow-sm hover:bg-black hover:shadow-white/30`}
     >
@@ -34,14 +35,35 @@ export const About = ({ getTheme }) => {
     </span>
   );
 
+  useEffect(() => {
+    const cards = document.querySelectorAll(".about-card");
+  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }else{
+            entry.target.classList.remove("show");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+  
+    cards.forEach((card) => observer.observe(card));
+  
+    return () => observer.disconnect();
+  }, []);
+    
   return (
     <RevealOnScroll>
       <section
         id="about"
         className={`min-h-screen flex items-center py-20 px-6 md:px-12 animation-slide ${
           getTheme
-            ? "bg-gradient-to-t from-white-900 to-black"
-            : "bg-gradient-to-t from-black-900 to-white"
+            ? "bg-linear-to-t from-black to-[#5b5a5a3e]"
+            : "bg-linear-to-t from-black-900 to-white"
         }`}
       >
         <div className="w-full max-w-7xl">
@@ -54,7 +76,7 @@ export const About = ({ getTheme }) => {
           </h2>
 
           <div
-            className={`bg-white/5 backdrop-blur-md rounded-2xl py-10 px-10 shadow-lg max-w-full ${
+            className={` about-card bg-white/5 backdrop-blur-md rounded-2xl py-10 px-10 shadow-lg max-w-full ${
               getTheme ? "bg-white/5" : "bg-black/5"
             }`}
           >

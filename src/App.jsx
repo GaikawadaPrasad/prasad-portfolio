@@ -46,7 +46,7 @@ function App() {
 
         <Home getTheme={darkMode} />
         <About getTheme={darkMode} />
-        <Projects getTheme={darkMode} />
+        <section id="projects"><Projects getTheme={darkMode} /></section>
         <Contact getTheme={darkMode} />
         <Footer getTheme={darkMode} />
       </div>

@@ -8,10 +8,31 @@ import {
   // faFacebook,
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
-import { faFile, faFileAlt } from "@fortawesome/free-solid-svg-icons";
+import {  faFileAlt } from "@fortawesome/free-solid-svg-icons";
 
 export const Contact = ({ getTheme }) => {
 
+  useEffect(() => {
+  const cards = document.querySelectorAll(".contact-card");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }else{
+          entry.target.classList.remove("show");
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  cards.forEach((card) => observer.observe(card));
+
+  return () => observer.disconnect();
+}, []);
+  
 
   const [fromData, setFromData] = useState({
     user_name: "",
@@ -67,8 +88,8 @@ export const Contact = ({ getTheme }) => {
       <section
         id="contact"
         className={`min-h-screen flex items-center justify-center py-20 animation-slide ${getTheme
-          ? "bg-gradient-to-t from-white-900 to-black"
-          : "bg-gradient-to-t from-black-900 to-white"
+          ? "bg-linear-to-t from-black to-[#5b5a5a3e]"
+          : "bg-linear-to-t from-black-900 to-white"
           }`}
       >
         <div className="max-w-6xl mx-auto px-4 w-full">
@@ -80,7 +101,7 @@ export const Contact = ({ getTheme }) => {
           </h2>
 
           <div
-            className={`bg-white/5 backdrop-blur-md rounded-2xl py-10 px-10 border border-white/20 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-white/20 ${getTheme ? "text-white" : "text-black"
+            className={ `  contact-card bg-white/5 backdrop-blur-md rounded-2xl py-10 px-10 border border-white/20 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-white/20 ${getTheme ? "text-white" : "text-black"
               }`}
           >
             <form className="space-y-6" onSubmit={handleSubmit}>
@@ -131,8 +152,8 @@ export const Contact = ({ getTheme }) => {
 
               <button
                 type="submit"
-                className={`w-full py-3 px-6 rounded font-medium transition   ${getTheme
-                  ? "bg-black text-white border-black hover:bg-white hover:text-black active:bg-gray-300"
+                className={`w-full py-3 px-6 rounded font-medium transition ease-in-out duration-300 ${getTheme
+                  ? "bg-linear-to-t from-black to-[#5b5a5a3e] text-white border-black hover:bg-white hover:text-black active:bg-gray-300"
                   : "bg-white text-black border-white hover:bg-black hover:text-white active:bg-gray-900"
                   }`}
                 disabled={isLoading}
@@ -152,12 +173,12 @@ export const Contact = ({ getTheme }) => {
 
             <div className="mt-12 text-center">
               <h3
-                className={`text-2xl font-semibold mb-6 ${getTheme ? "text-white" : "text-black"
+                className={`text-2xl font-semibold mb-6 ${getTheme ? "bg-linear-to-t from-black to-[#5b5a5a3e]" : "text-black"
                   }`}
               >
                 Follow Me
               </h3>
-              <div className="flex justify-center gap-10 rounded-xl border border-white/20 p-4 hover:scale-105 transition-transform duration-300">
+              <div className="bg-linear-to-b from-black to-[#5b5a5a3e] flex justify-center gap-10 rounded-xl border border-white/20 p-4 hover:scale-105 transition-transform duration-300">
                 <a
                   href="https://www.linkedin.com/in/prasadgaikawada/"
                   target="_blank"
