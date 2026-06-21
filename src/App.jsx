@@ -9,6 +9,7 @@ import { ErrorPage } from "./assets/Components/ErrorPage";
 import { Footer } from "./assets/Components/Footer";
 
 import { useEffect, useState } from "react";
+import FeaturedProjects from "./assets/Components/FeaturedProjects";
 
 function App() {
   const [mobileView, setMobileView] = useState(false);
@@ -46,6 +47,7 @@ function App() {
 
         <Home getTheme={darkMode} />
         <About getTheme={darkMode} />
+        <FeaturedProjects getTheme={darkMode} />
         <section id="projects"><Projects getTheme={darkMode} /></section>
         <Contact getTheme={darkMode} />
         <Footer getTheme={darkMode} />

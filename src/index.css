@@ -4,13 +4,25 @@ html {
 
 
 
-.project-card , .about-card , .contact-card {
+ .about-card , .contact-card , .featured-card{
   opacity: 0;
-  transform: translateX(-40px);
+  transform: translateY(-100px);
   transition: all 1s ease-out;
 }
 
-.project-card.show , .about-card.show , .contact-card.show {
-  opacity: 1;
-  transform: translateX(0);
+.project-card{
+  opacity: 0;
+  transform: translateX(-80px);
+  transition: all 1s ease-out;
+
 }
+
+ .about-card.show , .contact-card.show ,.featured-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.project-card.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
