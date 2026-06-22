@@ -41,8 +41,6 @@ const techColor = (tech) => {
   return map[tech] || "#9CA3AF";
 };
 
-
-
 const FeaturedCard = ({ project, getTheme, reverse }) => {
   const [activeImg, setActiveImg] = useState(0);
 
@@ -74,7 +72,9 @@ const FeaturedCard = ({ project, getTheme, reverse }) => {
             alt={project.title}
             className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
           />
-          <div className={`absolute inset-0 bg-linear-to-t ${project.accent} opacity-10 pointer-events-none`} />
+          <div
+            className={`absolute inset-0 bg-linear-to-t ${project.accent} opacity-10 pointer-events-none`}
+          />
         </div>
 
         {/* Thumbnails */}
@@ -85,10 +85,16 @@ const FeaturedCard = ({ project, getTheme, reverse }) => {
                 key={i}
                 onClick={() => setActiveImg(i)}
                 className={`flex-1 aspect-video rounded-lg overflow-hidden ring-2 transition-all duration-200 ${
-                  activeImg === i ? "ring-violet-400 opacity-100" : "ring-transparent opacity-50 hover:opacity-75"
+                  activeImg === i
+                    ? "ring-violet-400 opacity-100"
+                    : "ring-transparent opacity-50 hover:opacity-75"
                 }`}
               >
-                <img src={img} alt={`thumb-${i}`} className="w-full h-full object-cover object-top" />
+                <img
+                  src={img}
+                  alt={`thumb-${i}`}
+                  className="w-full h-full object-cover object-top"
+                />
               </button>
             ))}
           </div>
@@ -105,13 +111,19 @@ const FeaturedCard = ({ project, getTheme, reverse }) => {
             {project.badge}
           </span>
 
-          <h3 className={`text-2xl md:text-3xl font-extrabold leading-tight mb-1 ${getTheme ? "text-white" : "text-gray-900"}`}>
+          <h3
+            className={`text-2xl md:text-3xl font-extrabold leading-tight mb-1 ${getTheme ? "text-white" : "text-gray-900"}`}
+          >
             {project.title}
           </h3>
-          <p className={`text-sm font-semibold mb-4 bg-linear-to-r ${project.accent} bg-clip-text text-transparent`}>
+          <p
+            className={`text-sm font-semibold mb-4 bg-linear-to-r ${project.accent} bg-clip-text text-transparent`}
+          >
             {project.subtitle}
           </p>
-          <p className={`text-sm leading-relaxed mb-6 ${getTheme ? "text-gray-400" : "text-gray-600"}`}>
+          <p
+            className={`text-sm leading-relaxed mb-6 ${getTheme ? "text-gray-400" : "text-gray-600"}`}
+          >
             {project.desc}
           </p>
         </div>
@@ -150,7 +162,9 @@ const FeaturedCard = ({ project, getTheme, reverse }) => {
           ) : (
             <span
               className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-sm border ${
-                getTheme ? "border-white/20 text-gray-500" : "border-gray-300 text-gray-400"
+                getTheme
+                  ? "border-white/20 text-gray-500"
+                  : "border-gray-300 text-gray-400"
               }`}
             >
               Private / Confidential
@@ -164,6 +178,19 @@ const FeaturedCard = ({ project, getTheme, reverse }) => {
 
 export const Projects = ({ getTheme }) => {
   const [showMore, setShowMore] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("All");
+  const AllCategories = [
+    "All",
+    "Web Development",
+    "Mobile Development",
+    "Full Stack",
+    "IoT",
+    "Interactive Web Application",
+  ];
+
+  useEffect(() => {
+    console.log("category", activeCategory);
+  }, [activeCategory]);
 
   useEffect(() => {
     const cards = document.querySelectorAll(".project-card");
@@ -177,7 +204,7 @@ export const Projects = ({ getTheme }) => {
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
     cards.forEach((card) => observer.observe(card));
     return () => observer.disconnect();
@@ -187,37 +214,60 @@ export const Projects = ({ getTheme }) => {
     {
       title: "FitTrack - Smart Fitness Companion",
       desc: "A fully responsive fitness-tracking dashboard built with React and Firebase. Calculates custom biological metrics including BMI, BMR, and TDEE based on physical attributes and daily activity factors. Features interactive progress charts powered by Chart.js, and an automated milestone engine that records fitness progress over time.",
-      techs: ["React.js", "Firebase Auth", "Firebase Database", "Chart.js", "Vite", "React Router", "Tailwind CSS"],
+      techs: [
+        "React.js",
+        "Firebase Auth",
+        "Firebase Database",
+        "Chart.js",
+        "Vite",
+        "React Router",
+        "Tailwind CSS",
+      ],
+      category: "Interactive Web Application",
       link: "https://vdp-fit-track.vercel.app/login",
     },
     {
       title: "Melodix - Hybrid Mobile Music Player",
       desc: "An offline-first hybrid mobile music player built with React and Tailwind CSS, compiled natively for Android using Capacitor. Features high-performance local audio playback, persistent metadata caching using IndexedDB, dynamic drag-and-drop playlist reordering powered by dnd-kit, and native haptic feedback.",
-      techs: ["React.js", "Capacitor", "Zustand", "IndexedDB", "Tailwind CSS", "dnd-kit", "Framer Motion", "Android SDK"],
+      techs: [
+        "React.js",
+        "Capacitor",
+        "Zustand",
+        "IndexedDB",
+        "Tailwind CSS",
+        "dnd-kit",
+        "Framer Motion",
+        "Android SDK",
+      ],
+      category: "Mobile Development",
       link: "https://github.com/GaikawadaPrasad/Melodix",
     },
     {
       title: "Terminal Portfolio",
       desc: "A terminal-style portfolio website built with React and Tailwind CSS. Features a unique command-line interface for navigating through different sections of the portfolio.",
       techs: ["React.js", "Tailwind CSS"],
+      category: "Web Development",
       link: "https://gaikawadaprasad.github.io/terminal-portfolio/",
     },
     {
       title: "Gaming Website",
       desc: "An interactive website that offers fun mini-games such as Memory Game, Rock-Paper-Scissors, Tic-Tac-Toe and more. Designed to provide a playful and engaging user experience.",
       techs: ["HTML", "CSS", "JS"],
+      category: "Web Development",
       link: "https://vdp-gaming-hub.netlify.app/",
     },
     {
       title: "InterviewMate - AI-Powered Interview Preparation Platform",
       desc: "Built a complete MERN application from scratch, integrated Gemini API for dynamic question generation and performance analysis, implemented secure authentication, code execution, and analytics tracking.",
       techs: ["React.js", "Node.js", "MongoDB", "Gemini API", "Monaco Editor"],
+      category: "Interactive Web Application",
       link: "https://github.com/GaikawadaPrasad/Interview-Mate-backend",
     },
     {
       title: "RoyaleStats",
       desc: "A real-time statistics web application built using Java and Spring Boot that integrates with the Clash Royale API to fetch and display live player and clan data. Features REST API integration, JSON parsing, exception handling, and dynamic data rendering.",
       techs: ["Java", "Spring Boot", "REST API", "HTML", "CSS"],
+      category: "Full Stack",
       link: "https://github.com/GaikawadaPrasad/RoyaleStats-frontend",
     },
   ];
@@ -226,20 +276,56 @@ export const Projects = ({ getTheme }) => {
     {
       title: "Habit Tracker",
       desc: "A habit tracking application designed to help users build consistent daily routines using secure authentication and real-time data synchronization. Features habit management, progress tracking, and responsive user interaction.",
-      techs: ["React.js", "Firebase Authentication", "Firebase Realtime Database"],
+      techs: [
+        "React.js",
+        "Firebase Authentication",
+        "Firebase Realtime Database",
+      ],
+      category: "Web Development",
       link: "https://vdp-habit-tracker.vercel.app/",
     },
     {
       title: "Password Strength Checker",
       desc: "A helpful tool that analyzes the strength of user-entered passwords. Provides real-time feedback on password quality based on length, character variety, and overall security level.",
       techs: ["HTML", "CSS", "JS"],
+      category: "Web Development",
       link: "https://vdp-pwd-strength.vercel.app/",
+    },
+    {
+      id: 1,
+      title: "AI-Based IoT System for Early Failure Detection",
+      desc: "Developed an AI-powered IoT system to monitor electrical appliances using current, voltage, temperature, and vibration sensors. Built a React.js dashboard with Chart.js for real-time monitoring, appliance health analysis, and visualization of sensor data. Integrated ESP32 with Firebase for live data collection, cloud storage, and remote monitoring. Implemented machine learning models for anomaly detection and early prediction of appliance failures to support preventive maintenance.",
+      techs: [
+        "React.js",
+        "Chart.js",
+        "ESP32",
+        "Python",
+        "Firebase",
+        "Machine Learning",
+        "IoT Sensors",
+      ],
+      category: "IoT",
+      link: "https://github.com/GaikawadaPrasad/IntelliSense-web",
     },
     {
       title: "Chat Karo",
       desc: "A real-time chat application built using the MERN stack that enables secure one-to-one messaging with user authentication and instant communication using Socket.io.",
-      techs: ["MongoDB", "Express.js", "React.js", "Node.js", "Socket.io", "React Hot Toast"],
+      techs: [
+        "MongoDB",
+        "Express.js",
+        "React.js",
+        "Node.js",
+        "Socket.io",
+        "React Hot Toast",
+      ],
+      category: "Full Stack",
       link: "https://github.com/GaikawadaPrasad/chat-frontend",
+    },
+    {
+      title: "Whiteboard Drawing App",
+      desc: "A minimalistic and responsive whiteboard application inspired by Excalidraw, built with React and RoughJS. Supports freehand drawing, lines, rectangles, ellipses, customizable stroke styles, color selection, undo functionality, JSON export/import, and local persistence for saving and restoring drawings.",
+      techs: ["React.js", "RoughJS", "HTML5 Canvas", "LocalStorage", "CSS"],
+      link: "https://vdp-white-board.vercel.app/",
     },
   ];
 
@@ -250,44 +336,104 @@ export const Projects = ({ getTheme }) => {
         : "bg-white/10 border-black/20 text-white hover:border-black/40 hover:shadow-md"
     } p-6 rounded-xl hover:-translate-y-1 transition-all duration-300`;
 
-  const renderCard = ({ title, desc, techs, link }) => (
-    <div key={title} className={cardClass(getTheme)}>
-      <h3 className={`text-xl font-bold mb-2 ${getTheme ? "text-white" : "text-black"}`}>
-        {title}
-      </h3>
-      <p className={`${getTheme ? "text-gray-300" : "text-gray-700"} mb-4`}>{desc}</p>
-      <div className="flex flex-wrap gap-2 mb-4">
-        {techs.map((tech) => (
-          <span
-            key={tech}
-            className={`${
-              getTheme
-                ? "bg-white/10 text-white hover:bg-black hover:shadow-white/30"
-                : "bg-black/10 text-black hover:bg-white hover:shadow-black/30"
-            } py-1 px-3 rounded-xl text-sm font-medium shadow-sm`}
+  const renderCard = ({ title, desc, techs, category, link }) => (
+    <div>
+      {" "}
+      {activeCategory === "All" ? (
+        <div key={title} className={cardClass(getTheme)}>
+          <h3
+            className={`text-xl font-bold mb-2 ${getTheme ? "text-white" : "text-black"}`}
           >
-            {tech}
-          </span>
-        ))}
-      </div>
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`inline-block ${
-          getTheme ? "text-white hover:text-gray-300" : "text-black hover:text-gray-600"
-        } transition-color`}
-      >
-        <div
-          className={`flex items-center gap-3 border rounded-xl px-6 py-2 ${
-            getTheme
-              ? "border-white/50 hover:border-black/50 hover:bg-white hover:text-black hover:shadow-white"
-              : "border-black/50 hover:border-white/50 hover:bg-black hover:text-white hover:shadow-black"
-          }`}
-        >
-          View Project <span className="text-2xl">&rarr;</span>
+            {title}
+          </h3>
+          <p className={`${getTheme ? "text-gray-300" : "text-gray-700"} mb-4`}>
+            {desc}
+          </p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {techs.map((tech) => (
+              <span
+                key={tech}
+                className={`${
+                  getTheme
+                    ? "bg-white/10 text-white hover:bg-black hover:shadow-white/30"
+                    : "bg-black/10 text-black hover:bg-white hover:shadow-black/30"
+                } py-1 px-3 rounded-xl text-sm font-medium shadow-sm`}
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-block ${
+              getTheme
+                ? "text-white hover:text-gray-300"
+                : "text-black hover:text-gray-600"
+            } transition-color`}
+          >
+            <div
+              className={`flex items-center gap-3 border rounded-xl px-6 py-2 ${
+                getTheme
+                  ? "border-white/50 hover:border-black/50 hover:bg-white hover:text-black hover:shadow-white"
+                  : "border-black/50 hover:border-white/50 hover:bg-black hover:text-white hover:shadow-black"
+              }`}
+            >
+              View Project <span className="text-2xl">&rarr;</span>
+            </div>
+          </a>
         </div>
-      </a>
+      ) : (
+        category === activeCategory && (
+          <div key={title} className={cardClass(getTheme)}>
+            <h3
+              className={`text-xl font-bold mb-2 ${getTheme ? "text-white" : "text-black"}`}
+            >
+              {title}
+            </h3>
+            <p
+              className={`${getTheme ? "text-gray-300" : "text-gray-700"} mb-4`}
+            >
+              {desc}
+            </p>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {techs.map((tech) => (
+                <span
+                  key={tech}
+                  className={`${
+                    getTheme
+                      ? "bg-white/10 text-white hover:bg-black hover:shadow-white/30"
+                      : "bg-black/10 text-black hover:bg-white hover:shadow-black/30"
+                  } py-1 px-3 rounded-xl text-sm font-medium shadow-sm`}
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-block ${
+                getTheme
+                  ? "text-white hover:text-gray-300"
+                  : "text-black hover:text-gray-600"
+              } transition-color`}
+            >
+              <div
+                className={`flex items-center gap-3 border rounded-xl px-6 py-2 ${
+                  getTheme
+                    ? "border-white/50 hover:border-black/50 hover:bg-white hover:text-black hover:shadow-white"
+                    : "border-black/50 hover:border-white/50 hover:bg-black hover:text-white hover:shadow-black"
+                }`}
+              >
+                View Project <span className="text-2xl">&rarr;</span>
+              </div>
+            </a>
+          </div>
+        )
+      )}
     </div>
   );
 
@@ -302,12 +448,23 @@ export const Projects = ({ getTheme }) => {
         }`}
       >
         <div className="max-w-7xl w-full">
-
-       
-          <h2 className={`text-4xl font-extrabold mb-10 ${getTheme ? "text-white" : "text-black"} text-left`}>
+          <h2
+            className={`text-4xl font-extrabold mb-10 ${getTheme ? "text-white" : "text-black"} text-left`}
+          >
             Projects
           </h2>
-
+          {/* <div className="catogory max-w-7xl w-full flex gap-4 mb-8 overflow-scroll scrollbar-hide">
+            {AllCategories.map((category) => {
+              return (
+                <button
+                  className={`catogory-btn px-4 py-2 rounded-xl ${getTheme ? "bg-white/10 text-white" : "bg-black/10 text-black"}`}
+                  onClick={() => setActiveCategory(category)}
+                >
+                  {category}
+                </button>
+              );
+            })}
+          </div> */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-full">
             {projectsCard1.map(renderCard)}
           </div>

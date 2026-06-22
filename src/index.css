@@ -2,7 +2,26 @@ html {
   scroll-behavior: smooth;
 }
 
+.catogory-btn
+{
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
+.catogory-btn.active{
+  background-color: #007bff;
+  color: white;
+}
+
+.catogory-btn:hover{
+  border-radius: 8px;
+  border: 1px solid #007bff82;
+  background-color: #007bff0f;
+  color: white;
+  transform: translateY(-1px);
+}
 
  .about-card , .contact-card , .featured-card{
   opacity: 0;
