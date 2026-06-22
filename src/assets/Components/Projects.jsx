@@ -438,7 +438,7 @@ export const Projects = ({ getTheme }) => {
   );
 
   return (
-    <RevealOnScroll>
+    <>
       <section
         id="projects"
         className={`scroll-mt-20 min-h-screen py-20 px-6 md:px-12 animation-slide ${
@@ -498,6 +498,6 @@ export const Projects = ({ getTheme }) => {
           </button>
         </div>
       </section>
-    </RevealOnScroll>
+    </>
   );
 };
