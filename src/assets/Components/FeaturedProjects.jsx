@@ -4,6 +4,9 @@ import iotUI2 from "../../images/final_year_project_UI2.png";
 import chatImg from "../../images/Chart_Karo_UI2.png";
 import chatImg2 from "../../images/Chart_Karo_UI1.png";
 import sriImg from "../../images/Sri_Sri_Associates.png";
+import Muscle_UP_CAFE1 from "../../images/Muscle_UP_CAFE1.png";
+import Muscle_UP_CAFE2 from "../../images/Muscle_Up_CAFE2.png";
+import Muscle_UP_CAFE3 from "../../images/Muscle_UP_CAFE3.png";
 import { useEffect, useState } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
 
@@ -47,6 +50,8 @@ export default function FeaturedProjects({ getTheme }) {
         "LocalStorage API": "#4CAF50",
         "Gemini API": "#4285F4",
         "Monaco Editor": "#0078D4",
+        "REST APIs": "#FF9800",
+        "AutoTable PDF": "#E53935",
       };
       return map[tech] || "#9CA3AF";
     };
@@ -282,6 +287,26 @@ export default function FeaturedProjects({ getTheme }) {
       link: "",
       accent: "from-blue-500 to-cyan-500",
       glowColor: "rgba(59,130,246,0.15)",
+    },
+    {
+      id: 4,
+      badge: "MERN Stack",
+      title: "MuscleUP Café",
+      subtitle: "Billing & Sales Management System",
+      desc: "A MERN stack-based billing and sales management system built for a small café and supplement business. It enables quick checkout, inventory management, sales tracking, reports, and dashboard analytics. The system is used daily by staff and supports one-click bill printing through an integrated billing machine for faster customer service.",
+      techs: [
+        "MongoDB",
+        "Express.js",
+        "React.js",
+        "Node.js",
+        "React Hot Toast",
+        "REST APIs",
+        "AutoTable PDF",
+      ],
+      images: [Muscle_UP_CAFE1, Muscle_UP_CAFE2, Muscle_UP_CAFE3],
+      link: "",
+      accent: "from-green-500 to-emerald-600",
+      glowColor: "rgba(34,197,94,0.15)",
     },
   ];
   return (
