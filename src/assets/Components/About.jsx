@@ -1,26 +1,31 @@
 import { useEffect } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
+import { motion as Motion } from "framer-motion";
 
 export const About = ({ getTheme }) => {
   const SkillBadge = ({ label }) => {
     return (
-      <span
-        className={`inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-mono border transition-colors ${
+      <Motion.span
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className={`inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-mono border transition-colors cursor-default ${
           getTheme
             ? "bg-white/5 text-neutral-200 border-white/10 hover:border-white/25 hover:bg-white/10"
             : "bg-neutral-100 text-neutral-800 border-neutral-200 hover:bg-neutral-200"
         }`}
       >
         {label}
-      </span>
+      </Motion.span>
     );
   };
 
   const SkillCard = ({ title, skills }) => (
-    <div
+    <Motion.div
+      whileHover={{ y: -3 }}
+      transition={{ duration: 0.2 }}
       className={`p-6 rounded-2xl border transition-all duration-300 ${
         getTheme
-          ? "bg-white/5 border-white/10 hover:border-white/20"
+          ? "bg-white/5 border-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-white/5"
           : "bg-white border-neutral-200 shadow-xs hover:border-neutral-300"
       }`}
     >
@@ -36,7 +41,7 @@ export const About = ({ getTheme }) => {
           <SkillBadge key={label} label={label} />
         ))}
       </div>
-    </div>
+    </Motion.div>
   );
 
   useEffect(() => {
