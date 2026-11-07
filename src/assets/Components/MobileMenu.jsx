@@ -10,8 +10,8 @@ export const MobileMenu = ({ mobileView, setMobileView, darkMode, setDarkMode })
                   transition-all duration-300 ease-in-out backdrop-blur-xl
                   ${
                     darkMode
-                      ? "bg-black/90 text-white"
-                      : "bg-white/95 text-gray-900"
+                      ? "bg-black/95 text-white"
+                      : "bg-white/95 text-neutral-900"
                   }
                   ${
                     mobileView
@@ -31,35 +31,35 @@ export const MobileMenu = ({ mobileView, setMobileView, darkMode, setDarkMode })
         <a
           href="#home"
           onClick={() => setMobileView(false)}
-          className="text-2xl font-semibold hover:text-violet-500 transition-colors"
+          className="text-2xl font-semibold hover:opacity-70 transition-opacity"
         >
           Home
         </a>
         <a
           href="#about"
           onClick={() => setMobileView(false)}
-          className="text-2xl font-semibold hover:text-violet-500 transition-colors"
+          className="text-2xl font-semibold hover:opacity-70 transition-opacity"
         >
           About
         </a>
         <a
           href="#featured"
           onClick={() => setMobileView(false)}
-          className="text-2xl font-semibold hover:text-violet-500 transition-colors"
+          className="text-2xl font-semibold hover:opacity-70 transition-opacity"
         >
           Featured
         </a>
         <a
           href="#projects"
           onClick={() => setMobileView(false)}
-          className="text-2xl font-semibold hover:text-violet-500 transition-colors"
+          className="text-2xl font-semibold hover:opacity-70 transition-opacity"
         >
-          All Projects
+          Projects
         </a>
         <a
           href="#contact"
           onClick={() => setMobileView(false)}
-          className="text-2xl font-semibold hover:text-violet-500 transition-colors"
+          className="text-2xl font-semibold hover:opacity-70 transition-opacity"
         >
           Contact
         </a>
@@ -72,12 +72,11 @@ export const MobileMenu = ({ mobileView, setMobileView, darkMode, setDarkMode })
           className={`mt-6 px-6 py-2.5 rounded-full font-medium flex items-center gap-3 border transition-all cursor-pointer ${
             darkMode
               ? "bg-white/10 border-white/20 text-white hover:bg-white/20"
-              : "bg-gray-100 border-gray-300 text-gray-800 hover:bg-gray-200"
+              : "bg-neutral-100 border-neutral-300 text-neutral-800 hover:bg-neutral-200"
           }`}
-          aria-label="Toggle theme"
         >
-          <span>{darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}</span>
-          <FontAwesomeIcon icon={darkMode ? faSun : faMoon} className="text-lg" />
+          <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
+          <span>{darkMode ? "Light Mode" : "Dark Mode"}</span>
         </button>
       </div>
     </div>

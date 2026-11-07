@@ -18,16 +18,16 @@ export const Projects = ({ getTheme }) => {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
     cards.forEach((card) => observer.observe(card));
     return () => observer.disconnect();
-  }, [showMore]);
+  }, [showMore, activeCategory]);
 
   const projectsCard1 = [
     {
-      title: "FitTrack - Smart Fitness Companion",
-      desc: "A fully responsive fitness-tracking dashboard built with React and Firebase. Calculates custom biological metrics including BMI, BMR, and TDEE based on physical attributes and daily activity factors. Features interactive progress charts powered by Chart.js, and an automated milestone engine.",
+      title: "FitTrack - Fitness Companion",
+      desc: "A responsive fitness-tracking dashboard built with React and Firebase. Calculates biological metrics including BMI, BMR, and TDEE based on physical attributes and daily activity factors. Features interactive progress charts powered by Chart.js.",
       techs: [
         "React.js",
         "Firebase Auth",
@@ -41,8 +41,8 @@ export const Projects = ({ getTheme }) => {
       link: "https://vdp-fit-track.vercel.app/login",
     },
     {
-      title: "Melodix - Hybrid Mobile Music Player",
-      desc: "An offline-first hybrid mobile music player built with React and Tailwind CSS, compiled natively for Android using Capacitor. Features high-performance local audio playback, persistent metadata caching using IndexedDB, dynamic drag-and-drop playlist reordering powered by dnd-kit, and native haptic feedback.",
+      title: "Melodix - Mobile Music Player",
+      desc: "An offline-first hybrid mobile music player built with React and Tailwind CSS, compiled natively for Android using Capacitor. Features local audio playback, persistent metadata caching using IndexedDB, and drag-and-drop playlist reordering.",
       techs: [
         "React.js",
         "Capacitor",
@@ -58,28 +58,28 @@ export const Projects = ({ getTheme }) => {
     },
     {
       title: "Terminal Portfolio",
-      desc: "A terminal-style portfolio website built with React and Tailwind CSS. Features a unique command-line interface for navigating through different sections of the portfolio.",
+      desc: "A command-line style portfolio website built with React and Tailwind CSS. Features an interactive terminal prompt for exploring my skills, projects, and bio via keyboard commands.",
       techs: ["React.js", "Tailwind CSS"],
       category: "Web Development",
       link: "https://gaikawadaprasad.github.io/terminal-portfolio/",
     },
     {
-      title: "Gaming Website",
-      desc: "An interactive website that offers fun mini-games such as Memory Game, Rock-Paper-Scissors, Tic-Tac-Toe and more. Designed to provide a playful and engaging user experience.",
+      title: "Mini Games Hub",
+      desc: "An interactive browser gaming hub featuring mini-games including Memory Match, Rock-Paper-Scissors, and Tic-Tac-Toe. Built to practice core DOM manipulation, game loops, and responsive layout design.",
       techs: ["HTML", "CSS", "JS"],
       category: "Web Development",
       link: "https://vdp-gaming-hub.netlify.app/",
     },
     {
-      title: "InterviewMate - AI-Powered Interview Preparation Platform",
-      desc: "Built a complete MERN application from scratch, integrated Gemini API for dynamic question generation and performance analysis, implemented secure authentication, code execution, and analytics tracking.",
+      title: "InterviewMate - AI Interview Prep",
+      desc: "A full-stack preparation platform built with the MERN stack and integrated with the Gemini API for adaptive question generation, mock technical interviews, and real-time code editor integration.",
       techs: ["React.js", "Node.js", "MongoDB", "Gemini API", "Monaco Editor"],
       category: "Interactive Web Application",
       link: "https://github.com/GaikawadaPrasad/Interview-Mate-backend",
     },
     {
       title: "RoyaleStats",
-      desc: "A real-time statistics web application built using Java and Spring Boot that integrates with the Clash Royale API to fetch and display live player and clan data. Features REST API integration, JSON parsing, exception handling, and dynamic data rendering.",
+      desc: "A statistics tracking application built with Java and Spring Boot that integrates directly with the official Clash Royale API to fetch and render live player profiles, battle history, and clan metrics.",
       techs: ["Java", "Spring Boot", "REST API", "HTML", "CSS"],
       category: "Full Stack",
       link: "https://github.com/GaikawadaPrasad/RoyaleStats-frontend",
@@ -89,7 +89,7 @@ export const Projects = ({ getTheme }) => {
   const projectsCard2 = [
     {
       title: "Habit Tracker",
-      desc: "A habit tracking application designed to help users build consistent daily routines using secure authentication and real-time data synchronization. Features habit management, progress tracking, and responsive user interaction.",
+      desc: "A daily habit tracking application designed to help build consistent routines. Uses Firebase for real-time data sync, progress calculations, and responsive streak tracking.",
       techs: [
         "React.js",
         "Firebase Authentication",
@@ -100,22 +100,20 @@ export const Projects = ({ getTheme }) => {
     },
     {
       title: "Password Strength Checker",
-      desc: "A helpful tool that analyzes the strength of user-entered passwords. Provides real-time feedback on password quality based on length, character variety, and overall security level.",
+      desc: "A client-side security tool that analyzes passwords in real time. Evaluates character complexity, length, entropy, and common security pitfalls to offer immediate feedback.",
       techs: ["HTML", "CSS", "JS"],
       category: "Web Development",
       link: "https://vdp-pwd-strength.vercel.app/",
     },
     {
-      id: 1,
-      title: "AI-Based IoT System for Early Failure Detection",
-      desc: "Developed an AI-powered IoT system to monitor electrical appliances using current, voltage, temperature, and vibration sensors. Built a React.js dashboard with Chart.js for real-time monitoring, appliance health analysis, and visualization of sensor data.",
+      title: "IoT Appliance Failure Detection",
+      desc: "An IoT monitoring system for electrical appliances using current, voltage, temperature, and vibration sensors with ESP32 and Firebase, combined with a real-time web dashboard for health metrics.",
       techs: [
         "React.js",
         "Chart.js",
         "ESP32",
         "Python",
         "Firebase",
-        "Machine Learning",
         "IoT Sensors",
       ],
       category: "IoT",
@@ -123,7 +121,7 @@ export const Projects = ({ getTheme }) => {
     },
     {
       title: "Chat Karo",
-      desc: "A real-time chat application built using the MERN stack that enables secure one-to-one messaging with user authentication and instant communication using Socket.io.",
+      desc: "A full-stack chat application built with the MERN stack and Socket.io enabling instant one-to-one messaging with live presence indicators and notification alerts.",
       techs: [
         "MongoDB",
         "Express.js",
@@ -137,30 +135,46 @@ export const Projects = ({ getTheme }) => {
     },
     {
       title: "Whiteboard Drawing App",
-      desc: "A minimalistic and responsive whiteboard application inspired by Excalidraw, built with React and RoughJS. Supports freehand drawing, lines, rectangles, ellipses, customizable stroke styles, color selection, undo functionality, and local persistence.",
+      desc: "A responsive browser whiteboard application built with React and RoughJS. Supports freehand sketches, geometric shapes, customizable stroke styles, color picker, and local state saving.",
       techs: ["React.js", "RoughJS", "HTML5 Canvas", "LocalStorage", "CSS"],
       category: "Interactive Web Application",
       link: "https://vdp-white-board.vercel.app/",
     },
   ];
 
+  const categories = [
+    "All",
+    "Full Stack",
+    "Mobile Development",
+    "Interactive Web Application",
+    "IoT",
+    "Web Development",
+  ];
+
+  const allProjects = [...projectsCard1, ...projectsCard2];
+  const displayedProjects =
+    activeCategory === "All"
+      ? showMore
+        ? allProjects
+        : projectsCard1
+      : allProjects.filter((p) => p.category === activeCategory);
+
   const renderCard = (project) => {
-    const { title, desc, techs, category, link } = project;
-    if (activeCategory !== "All" && category !== activeCategory) return null;
+    const { title, desc, techs, link } = project;
 
     return (
       <div
         key={title}
         className={`project-card group flex flex-col justify-between p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
           getTheme
-            ? "bg-white/5 border-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-violet-500/5"
-            : "bg-white border-slate-200 shadow-xs hover:shadow-md hover:border-slate-300"
+            ? "bg-white/5 border-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-white/5"
+            : "bg-white border-neutral-200 shadow-xs hover:border-neutral-300"
         }`}
       >
         <div>
           <h3
-            className={`text-xl font-bold mb-3 group-hover:text-violet-400 transition-colors ${
-              getTheme ? "text-white" : "text-slate-900"
+            className={`text-xl font-bold mb-3 transition-colors ${
+              getTheme ? "text-white" : "text-neutral-900"
             }`}
           >
             {title}
@@ -168,7 +182,7 @@ export const Projects = ({ getTheme }) => {
 
           <p
             className={`text-sm leading-relaxed mb-6 ${
-              getTheme ? "text-gray-300" : "text-slate-600"
+              getTheme ? "text-neutral-300" : "text-neutral-600"
             }`}
           >
             {desc}
@@ -182,10 +196,10 @@ export const Projects = ({ getTheme }) => {
               return (
                 <span
                   key={tech}
-                  className={`text-xs font-semibold px-3 py-1 rounded-full border transition-transform duration-150 hover:scale-105 ${
+                  className={`text-xs font-mono px-3 py-1 rounded-full border transition-transform duration-150 ${
                     getTheme
-                      ? "bg-white/5 text-gray-200 border-white/10"
-                      : "bg-slate-100 text-slate-700 border-slate-200"
+                      ? "bg-white/5 text-neutral-300 border-white/10"
+                      : "bg-neutral-100 text-neutral-700 border-neutral-200"
                   }`}
                   style={{ borderColor: `${color}44` }}
                 >
@@ -206,10 +220,10 @@ export const Projects = ({ getTheme }) => {
             className={`inline-flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-semibold border transition-all duration-200 ${
               getTheme
                 ? "border-white/20 text-white hover:bg-white hover:text-black"
-                : "border-slate-300 text-slate-800 hover:bg-slate-900 hover:text-white"
+                : "border-neutral-300 text-neutral-800 hover:bg-black hover:text-white"
             }`}
           >
-            View Project <span>→</span>
+            View Project &rarr;
           </a>
         </div>
       </div>
@@ -223,62 +237,80 @@ export const Projects = ({ getTheme }) => {
         className={`py-24 px-6 md:px-12 scroll-mt-10 ${
           getTheme
             ? "bg-black text-white"
-            : "bg-slate-50 text-slate-900"
+            : "bg-neutral-50 text-neutral-900"
         }`}
       >
         <div className="max-w-6xl mx-auto">
-          <div className="mb-12">
+          <div className="mb-10">
             <h2
               className={`text-3xl md:text-5xl font-extrabold mb-3 tracking-tight ${
-                getTheme ? "text-white" : "text-slate-900"
+                getTheme ? "text-white" : "text-neutral-900"
               }`}
             >
               All Projects
             </h2>
             <p
               className={`text-sm md:text-base ${
-                getTheme ? "text-gray-400" : "text-slate-600"
+                getTheme ? "text-neutral-400" : "text-neutral-600"
               }`}
             >
-              Explore my full catalog of web applications, mobile builds, and open-source code
+              Catalog of web applications, mobile apps, and open-source projects
             </p>
-            <div className="w-20 h-1.5 bg-violet-600 rounded-full mt-4" />
+            <div className={`w-16 h-1 mt-4 rounded-full ${getTheme ? "bg-white/30" : "bg-black/30"}`} />
+          </div>
+
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap gap-2 mb-10">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => setActiveCategory(cat)}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-medium transition-all duration-200 cursor-pointer border ${
+                  activeCategory === cat
+                    ? getTheme
+                      ? "bg-white text-black border-white shadow-sm"
+                      : "bg-black text-white border-black shadow-sm"
+                    : getTheme
+                    ? "bg-white/5 border-white/10 text-neutral-300 hover:bg-white/10 hover:text-white"
+                    : "bg-white border-neutral-200 text-neutral-700 hover:bg-neutral-100"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projectsCard1.map(renderCard)}
+            {displayedProjects.map(renderCard)}
           </div>
 
-          {showMore && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-              {projectsCard2.map(renderCard)}
+          {activeCategory === "All" && (
+            <div className="mt-10 text-center">
+              <button
+                type="button"
+                className={`px-8 py-3 rounded-xl font-semibold border transition-all duration-300 cursor-pointer ${
+                  getTheme
+                    ? "bg-white/5 border-white/15 text-white hover:bg-white/10 hover:border-white/30"
+                    : "bg-white border-neutral-300 text-neutral-800 shadow-xs hover:bg-black hover:text-white"
+                }`}
+                onClick={() => {
+                  if (showMore) {
+                    const elem = document.getElementById("projects");
+                    if (elem) {
+                      window.scrollTo({
+                        top: elem.offsetTop - 80,
+                        behavior: "smooth",
+                      });
+                    }
+                  }
+                  setShowMore(!showMore);
+                }}
+              >
+                {showMore ? "Show Less Projects" : "Show More Projects"}
+              </button>
             </div>
           )}
-
-          <div className="mt-10 text-center">
-            <button
-              type="button"
-              className={`px-8 py-3 rounded-xl font-semibold border transition-all duration-300 cursor-pointer ${
-                getTheme
-                  ? "bg-white/5 border-white/15 text-white hover:bg-white/10 hover:border-white/30"
-                  : "bg-white border-slate-300 text-slate-800 shadow-xs hover:bg-slate-900 hover:text-white"
-              }`}
-              onClick={() => {
-                if (showMore) {
-                  const elem = document.getElementById("projects");
-                  if (elem) {
-                    window.scrollTo({
-                      top: elem.offsetTop - 80,
-                      behavior: "smooth",
-                    });
-                  }
-                }
-                setShowMore(!showMore);
-              }}
-            >
-              {showMore ? "Show Less Projects" : "Show More Projects"}
-            </button>
-          </div>
         </div>
       </section>
     </RevealOnScroll>

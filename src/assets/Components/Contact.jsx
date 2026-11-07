@@ -21,7 +21,6 @@ export const Contact = ({ getTheme }) => {
 
   const service_id = "service_kx1qjdj";
   const template_id = "template_oziconp";
-  const template_id_reply = "template_oziconp";
   const public_key = "aORidiTZGt5beCvS_";
 
   useEffect(() => {
@@ -51,12 +50,6 @@ export const Contact = ({ getTheme }) => {
     setIsLoading(true);
     setError("");
 
-    emailjs.send(service_id, template_id_reply, {
-      name: formData.user_name,
-      title: formData.message,
-      email: formData.email,
-    });
-
     emailjs
       .send(service_id, template_id, {
         name: formData.user_name,
@@ -64,14 +57,14 @@ export const Contact = ({ getTheme }) => {
         email: formData.email,
       })
       .then(
-        (res) => {
+        () => {
           setIsLoading(false);
           setIsSubmitted(true);
           setFormData({ user_name: "", email: "", message: "" });
         },
-        (err) => {
+        () => {
           setIsLoading(false);
-          setError(`Something went wrong. Please try again later.`);
+          setError("Something went wrong. Please try again later.");
         }
       );
   };
@@ -81,39 +74,39 @@ export const Contact = ({ getTheme }) => {
       <section
         id="contact"
         className={`py-24 px-6 md:px-12 scroll-mt-10 ${
-          getTheme ? "bg-black text-white" : "bg-slate-50 text-slate-900"
+          getTheme ? "bg-black text-white" : "bg-neutral-50 text-neutral-900"
         }`}
       >
         <div className="max-w-4xl mx-auto">
           <div className="mb-12 text-center">
             <h2
               className={`text-3xl md:text-5xl font-extrabold mb-3 tracking-tight ${
-                getTheme ? "text-white" : "text-slate-900"
+                getTheme ? "text-white" : "text-neutral-900"
               }`}
             >
               Get In Touch
             </h2>
             <p
               className={`text-sm md:text-base ${
-                getTheme ? "text-gray-400" : "text-slate-600"
+                getTheme ? "text-neutral-400" : "text-neutral-600"
               }`}
             >
-              Have a project in mind or looking to hire? Feel free to reach out anytime!
+              Have a question or want to discuss a project? Send a message directly.
             </p>
-            <div className="w-20 h-1.5 bg-violet-600 rounded-full mx-auto mt-4" />
+            <div className={`w-16 h-1 mt-4 mx-auto rounded-full ${getTheme ? "bg-white/30" : "bg-black/30"}`} />
           </div>
 
           <div
             className={`contact-card rounded-3xl p-8 md:p-10 border transition-all duration-300 ${
               getTheme
                 ? "bg-white/5 border-white/10 backdrop-blur-md"
-                : "bg-white border-slate-200 shadow-sm"
+                : "bg-white border-neutral-200 shadow-sm"
             }`}
           >
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider mb-2 opacity-80">
-                  Your Name
+                <label className="block text-xs font-mono uppercase tracking-wider mb-2 opacity-80">
+                  Name
                 </label>
                 <input
                   type="text"
@@ -123,18 +116,18 @@ export const Contact = ({ getTheme }) => {
                     setFormData({ ...formData, user_name: e.target.value })
                   }
                   required
-                  placeholder="John Doe"
-                  className={`w-full border rounded-xl px-4 py-3 text-sm transition focus:outline-none focus:ring-2 focus:ring-violet-500 ${
+                  placeholder="Your Name"
+                  className={`w-full border rounded-xl px-4 py-3 text-sm transition focus:outline-none ${
                     getTheme
-                      ? "bg-white/5 text-white placeholder-gray-500 border-white/15"
-                      : "bg-slate-50 text-slate-900 placeholder-slate-400 border-slate-300"
+                      ? "bg-white/5 text-white placeholder-neutral-500 border-white/15 focus:border-white/50 focus:bg-white/10"
+                      : "bg-neutral-50 text-neutral-900 placeholder-neutral-400 border-neutral-300 focus:border-black"
                   }`}
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider mb-2 opacity-80">
-                  Email Address
+                <label className="block text-xs font-mono uppercase tracking-wider mb-2 opacity-80">
+                  Email
                 </label>
                 <input
                   type="email"
@@ -144,17 +137,17 @@ export const Contact = ({ getTheme }) => {
                     setFormData({ ...formData, email: e.target.value })
                   }
                   required
-                  placeholder="john@example.com"
-                  className={`w-full border rounded-xl px-4 py-3 text-sm transition focus:outline-none focus:ring-2 focus:ring-violet-500 ${
+                  placeholder="your.email@example.com"
+                  className={`w-full border rounded-xl px-4 py-3 text-sm transition focus:outline-none ${
                     getTheme
-                      ? "bg-white/5 text-white placeholder-gray-500 border-white/15"
-                      : "bg-slate-50 text-slate-900 placeholder-slate-400 border-slate-300"
+                      ? "bg-white/5 text-white placeholder-neutral-500 border-white/15 focus:border-white/50 focus:bg-white/10"
+                      : "bg-neutral-50 text-neutral-900 placeholder-neutral-400 border-neutral-300 focus:border-black"
                   }`}
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider mb-2 opacity-80">
+                <label className="block text-xs font-mono uppercase tracking-wider mb-2 opacity-80">
                   Message
                 </label>
                 <textarea
@@ -164,12 +157,12 @@ export const Contact = ({ getTheme }) => {
                     setFormData({ ...formData, message: e.target.value })
                   }
                   required
-                  placeholder="Hi Prasad, I'd like to discuss a project..."
+                  placeholder="Your message..."
                   rows={5}
-                  className={`w-full border rounded-xl px-4 py-3 text-sm transition focus:outline-none focus:ring-2 focus:ring-violet-500 ${
+                  className={`w-full border rounded-xl px-4 py-3 text-sm transition focus:outline-none ${
                     getTheme
-                      ? "bg-white/5 text-white placeholder-gray-500 border-white/15"
-                      : "bg-slate-50 text-slate-900 placeholder-slate-400 border-slate-300"
+                      ? "bg-white/5 text-white placeholder-neutral-500 border-white/15 focus:border-white/50 focus:bg-white/10"
+                      : "bg-neutral-50 text-neutral-900 placeholder-neutral-400 border-neutral-300 focus:border-black"
                   }`}
                 />
               </div>
@@ -177,23 +170,29 @@ export const Contact = ({ getTheme }) => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3.5 px-6 rounded-xl font-semibold text-white bg-gradient-to-r from-violet-600 to-indigo-600 shadow-md transition-all duration-300 hover:scale-[1.01] hover:shadow-lg disabled:opacity-50 cursor-pointer"
+                className={`w-full py-3.5 px-6 rounded-xl font-semibold text-sm transition-all duration-300 cursor-pointer disabled:opacity-50 ${
+                  getTheme
+                    ? "bg-white text-black hover:bg-neutral-200"
+                    : "bg-black text-white hover:bg-neutral-800"
+                }`}
               >
-                {isLoading ? "Sending Message..." : "Send Message 🚀"}
+                {isLoading ? "Sending Message..." : "Send Message"}
               </button>
 
               {error && (
-                <p className="text-red-400 text-sm text-center mt-3">{error}</p>
+                <p className="text-red-400 text-sm text-center mt-3 font-mono">{error}</p>
               )}
               {isSubmitted && (
-                <p className="text-emerald-400 text-sm text-center mt-3 font-medium">
-                  ✓ Message sent successfully! I will reply to you shortly.
+                <p className="text-emerald-400 text-sm text-center mt-3 font-mono">
+                  Message sent successfully. I will get back to you soon.
                 </p>
               )}
             </form>
 
             <div className="mt-12 pt-8 border-t border-white/10 text-center">
-              <h3 className="text-lg font-bold mb-6">Connect With Me</h3>
+              <h3 className="text-sm font-mono uppercase tracking-wider mb-6 text-neutral-400">
+                Connect
+              </h3>
 
               <div className="flex justify-center items-center gap-6">
                 <a
@@ -203,11 +202,11 @@ export const Contact = ({ getTheme }) => {
                   aria-label="LinkedIn Profile"
                   className={`p-3.5 rounded-full border transition-all duration-300 hover:scale-110 ${
                     getTheme
-                      ? "bg-white/5 border-white/10 text-white hover:bg-white/15 hover:border-violet-500/50"
-                      : "bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200"
+                      ? "bg-white/5 border-white/10 text-white hover:bg-white/15 hover:border-white/30"
+                      : "bg-neutral-100 border-neutral-200 text-neutral-800 hover:bg-neutral-200"
                   }`}
                 >
-                  <FontAwesomeIcon icon={faLinkedin} className="text-xl" />
+                  <FontAwesomeIcon icon={faLinkedin} className="text-lg" />
                 </a>
 
                 <a
@@ -217,11 +216,11 @@ export const Contact = ({ getTheme }) => {
                   aria-label="GitHub Profile"
                   className={`p-3.5 rounded-full border transition-all duration-300 hover:scale-110 ${
                     getTheme
-                      ? "bg-white/5 border-white/10 text-white hover:bg-white/15 hover:border-violet-500/50"
-                      : "bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200"
+                      ? "bg-white/5 border-white/10 text-white hover:bg-white/15 hover:border-white/30"
+                      : "bg-neutral-100 border-neutral-200 text-neutral-800 hover:bg-neutral-200"
                   }`}
                 >
-                  <FontAwesomeIcon icon={faGithub} className="text-xl" />
+                  <FontAwesomeIcon icon={faGithub} className="text-lg" />
                 </a>
 
                 <a
@@ -231,11 +230,11 @@ export const Contact = ({ getTheme }) => {
                   aria-label="Instagram Profile"
                   className={`p-3.5 rounded-full border transition-all duration-300 hover:scale-110 ${
                     getTheme
-                      ? "bg-white/5 border-white/10 text-white hover:bg-white/15 hover:border-violet-500/50"
-                      : "bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200"
+                      ? "bg-white/5 border-white/10 text-white hover:bg-white/15 hover:border-white/30"
+                      : "bg-neutral-100 border-neutral-200 text-neutral-800 hover:bg-neutral-200"
                   }`}
                 >
-                  <FontAwesomeIcon icon={faInstagram} className="text-xl" />
+                  <FontAwesomeIcon icon={faInstagram} className="text-lg" />
                 </a>
 
                 <a
@@ -245,11 +244,11 @@ export const Contact = ({ getTheme }) => {
                   aria-label="Resume Document"
                   className={`p-3.5 rounded-full border transition-all duration-300 hover:scale-110 ${
                     getTheme
-                      ? "bg-white/5 border-white/10 text-white hover:bg-white/15 hover:border-violet-500/50"
-                      : "bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200"
+                      ? "bg-white/5 border-white/10 text-white hover:bg-white/15 hover:border-white/30"
+                      : "bg-neutral-100 border-neutral-200 text-neutral-800 hover:bg-neutral-200"
                   }`}
                 >
-                  <FontAwesomeIcon icon={faFileAlt} className="text-xl" />
+                  <FontAwesomeIcon icon={faFileAlt} className="text-lg" />
                 </a>
               </div>
             </div>

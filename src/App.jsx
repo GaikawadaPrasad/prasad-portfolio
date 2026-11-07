@@ -5,7 +5,6 @@ import { Home } from "./assets/Components/Home";
 import { About } from "./assets/Components/About";
 import { Projects } from "./assets/Components/Projects";
 import { Contact } from "./assets/Components/Contact";
-import { ErrorPage } from "./assets/Components/ErrorPage";
 import { Footer } from "./assets/Components/Footer";
 
 import { useEffect, useState } from "react";
@@ -48,7 +47,7 @@ function App() {
         <Home getTheme={darkMode} />
         <About getTheme={darkMode} />
         <FeaturedProjects getTheme={darkMode} />
-        <section id="projects"><Projects getTheme={darkMode} /></section>
+        <Projects getTheme={darkMode} />
         <Contact getTheme={darkMode} />
         <Footer getTheme={darkMode} />
       </div>
