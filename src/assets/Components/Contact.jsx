@@ -5,36 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,
   faInstagram,
-  // faFacebook,
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
-import {  faFileAlt } from "@fortawesome/free-solid-svg-icons";
+import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
 
 export const Contact = ({ getTheme }) => {
-
-  useEffect(() => {
-  const cards = document.querySelectorAll(".contact-card");
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-        }else{
-          entry.target.classList.remove("show");
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-
-  cards.forEach((card) => observer.observe(card));
-
-  return () => observer.disconnect();
-}, []);
-  
-
-  const [fromData, setFromData] = useState({
+  const [formData, setFormData] = useState({
     user_name: "",
     email: "",
     message: "",
@@ -52,33 +28,50 @@ export const Contact = ({ getTheme }) => {
     emailjs.init(public_key);
   }, [public_key]);
 
+  useEffect(() => {
+    const cards = document.querySelectorAll(".contact-card");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          } else {
+            entry.target.classList.remove("show");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
 
     emailjs.send(service_id, template_id_reply, {
-      name: fromData.user_name,
-      title: fromData.message,
-      email: fromData.email,
+      name: formData.user_name,
+      title: formData.message,
+      email: formData.email,
     });
 
     emailjs
       .send(service_id, template_id, {
-        name: fromData.user_name,
-        title: fromData.message,
-        email: fromData.email,
+        name: formData.user_name,
+        title: formData.message,
+        email: formData.email,
       })
       .then(
         (res) => {
           setIsLoading(false);
           setIsSubmitted(true);
-          setFromData({ user_name: "", email: "", message: "" });
-          console.log(res.status);
+          setFormData({ user_name: "", email: "", message: "" });
         },
         (err) => {
           setIsLoading(false);
-          setError(`Something went wrong. Please try again later. ${err}`);
+          setError(`Something went wrong. Please try again later.`);
         }
       );
   };
@@ -87,157 +80,177 @@ export const Contact = ({ getTheme }) => {
     <RevealOnScroll>
       <section
         id="contact"
-        className={`min-h-screen flex items-center justify-center py-20 animation-slide ${getTheme
-          ? "bg-linear-to-t from-black to-[#5b5a5a3e]"
-          : "bg-linear-to-t from-black-900 to-white"
-          }`}
+        className={`py-24 px-6 md:px-12 scroll-mt-10 ${
+          getTheme ? "bg-black text-white" : "bg-slate-50 text-slate-900"
+        }`}
       >
-        <div className="max-w-6xl mx-auto px-4 w-full">
-          <h2
-            className={`text-4xl font-extrabold mb-10 text-center ${getTheme ? "text-white" : "text-black"
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-12 text-center">
+            <h2
+              className={`text-3xl md:text-5xl font-extrabold mb-3 tracking-tight ${
+                getTheme ? "text-white" : "text-slate-900"
               }`}
-          >
-            Contact Me
-          </h2>
+            >
+              Get In Touch
+            </h2>
+            <p
+              className={`text-sm md:text-base ${
+                getTheme ? "text-gray-400" : "text-slate-600"
+              }`}
+            >
+              Have a project in mind or looking to hire? Feel free to reach out anytime!
+            </p>
+            <div className="w-20 h-1.5 bg-violet-600 rounded-full mx-auto mt-4" />
+          </div>
 
           <div
-            className={ `  contact-card bg-white/5 backdrop-blur-md rounded-2xl py-10 px-10 border border-white/20 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-white/20 ${getTheme ? "text-white" : "text-black"
-              }`}
+            className={`contact-card rounded-3xl p-8 md:p-10 border transition-all duration-300 ${
+              getTheme
+                ? "bg-white/5 border-white/10 backdrop-blur-md"
+                : "bg-white border-slate-200 shadow-sm"
+            }`}
           >
             <form className="space-y-6" onSubmit={handleSubmit}>
-              <input
-                type="text"
-                name="user_name"
-                value={fromData.user_name}
-                onChange={(e) =>
-                  setFromData({ ...fromData, user_name: e.target.value })
-                }
-                required
-                placeholder="Enter your Name"
-                className={`w-full bg-transparent border rounded px-4 py-3 ${getTheme
-                  ? "text-white placeholder-white/70 border-white/20 focus:border-white focus:bg-white/10"
-                  : "text-black placeholder-black/70 border-black/20 focus:border-black focus:bg-black/10"
-                  } transition focus:outline-none`}
-              />
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider mb-2 opacity-80">
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  name="user_name"
+                  value={formData.user_name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, user_name: e.target.value })
+                  }
+                  required
+                  placeholder="John Doe"
+                  className={`w-full border rounded-xl px-4 py-3 text-sm transition focus:outline-none focus:ring-2 focus:ring-violet-500 ${
+                    getTheme
+                      ? "bg-white/5 text-white placeholder-gray-500 border-white/15"
+                      : "bg-slate-50 text-slate-900 placeholder-slate-400 border-slate-300"
+                  }`}
+                />
+              </div>
 
-              <input
-                type="email"
-                name="email"
-                value={fromData.email}
-                onChange={(e) =>
-                  setFromData({ ...fromData, email: e.target.value })
-                }
-                required
-                placeholder="Enter your Email"
-                className={`w-full bg-transparent border rounded px-4 py-3 ${getTheme
-                  ? "text-white placeholder-white/70 border-white/20 focus:border-white focus:bg-white/10"
-                  : "text-black placeholder-black/70 border-black/20 focus:border-black focus:bg-black/10"
-                  } transition focus:outline-none`}
-              />
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider mb-2 opacity-80">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  required
+                  placeholder="john@example.com"
+                  className={`w-full border rounded-xl px-4 py-3 text-sm transition focus:outline-none focus:ring-2 focus:ring-violet-500 ${
+                    getTheme
+                      ? "bg-white/5 text-white placeholder-gray-500 border-white/15"
+                      : "bg-slate-50 text-slate-900 placeholder-slate-400 border-slate-300"
+                  }`}
+                />
+              </div>
 
-              <textarea
-                name="message"
-                value={fromData.message}
-                onChange={(e) =>
-                  setFromData({ ...fromData, message: e.target.value })
-                }
-                required
-                placeholder="Your Message"
-                className={`w-full bg-transparent border rounded px-4 py-3 ${getTheme
-                  ? "text-white placeholder-white/70 border-white/20 focus:border-white focus:bg-white/10"
-                  : "text-black placeholder-black/70 border-black/20 focus:border-black focus:bg-black/10"
-                  } transition focus:outline-none`}
-                rows={5}
-              />
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider mb-2 opacity-80">
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
+                  required
+                  placeholder="Hi Prasad, I'd like to discuss a project..."
+                  rows={5}
+                  className={`w-full border rounded-xl px-4 py-3 text-sm transition focus:outline-none focus:ring-2 focus:ring-violet-500 ${
+                    getTheme
+                      ? "bg-white/5 text-white placeholder-gray-500 border-white/15"
+                      : "bg-slate-50 text-slate-900 placeholder-slate-400 border-slate-300"
+                  }`}
+                />
+              </div>
 
               <button
                 type="submit"
-                className={`w-full py-3 px-6 rounded font-medium transition ease-in-out duration-300 ${getTheme
-                  ? "bg-linear-to-t from-black to-[#5b5a5a3e] text-white border-black hover:bg-white hover:text-black active:bg-gray-300"
-                  : "bg-white text-black border-white hover:bg-black hover:text-white active:bg-gray-900"
-                  }`}
                 disabled={isLoading}
+                className="w-full py-3.5 px-6 rounded-xl font-semibold text-white bg-gradient-to-r from-violet-600 to-indigo-600 shadow-md transition-all duration-300 hover:scale-[1.01] hover:shadow-lg disabled:opacity-50 cursor-pointer"
               >
-                {isLoading ? "Sending..." : "Send Message"}
+                {isLoading ? "Sending Message..." : "Send Message 🚀"}
               </button>
 
               {error && (
-                <p className="text-red-500 text-center mt-3">{error}</p>
+                <p className="text-red-400 text-sm text-center mt-3">{error}</p>
               )}
               {isSubmitted && (
-                <p className="text-green-500 text-center mt-3">
-                  Message sent successfully!
+                <p className="text-emerald-400 text-sm text-center mt-3 font-medium">
+                  ✓ Message sent successfully! I will reply to you shortly.
                 </p>
               )}
             </form>
 
-            <div className="mt-12 text-center">
-              <h3
-                className={`text-2xl font-semibold mb-6 ${getTheme ? "bg-linear-to-t from-black to-[#5b5a5a3e]" : "text-black"
-                  }`}
-              >
-                Follow Me
-              </h3>
-              <div className="bg-linear-to-b from-black to-[#5b5a5a3e] flex justify-center gap-10 rounded-xl border border-white/20 p-4 hover:scale-105 transition-transform duration-300">
+            <div className="mt-12 pt-8 border-t border-white/10 text-center">
+              <h3 className="text-lg font-bold mb-6">Connect With Me</h3>
+
+              <div className="flex justify-center items-center gap-6">
                 <a
                   href="https://www.linkedin.com/in/prasadgaikawada/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${getTheme
-                    ? "text-white hover:text-gray-300"
-                    : "text-black hover:text-gray-500"
-                    } transition-transform transform hover:scale-110`}
-                >
-                  <FontAwesomeIcon icon={faLinkedin} size="2x" />
-                </a>
-                <a
-                  href="https://www.instagram.com/princeprasad_1/profilecard/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${getTheme
-                    ? "text-white hover:text-gray-300"
-                    : "text-black hover:text-gray-500"
-                    } transition-transform transform hover:scale-110`}
-                >
-                  <FontAwesomeIcon icon={faInstagram} size="2x" />
-                </a>
-                {/* <a
-                  href="https://www.facebook.com/profile.php?id=100039413592661"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${
+                  aria-label="LinkedIn Profile"
+                  className={`p-3.5 rounded-full border transition-all duration-300 hover:scale-110 ${
                     getTheme
-                      ? "text-white hover:text-gray-300"
-                      : "text-black hover:text-gray-500"
-                  } transition-transform transform hover:scale-110`}
+                      ? "bg-white/5 border-white/10 text-white hover:bg-white/15 hover:border-violet-500/50"
+                      : "bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200"
+                  }`}
                 >
-                  <FontAwesomeIcon icon={faFacebook} size="2x" />
-                </a> */}
+                  <FontAwesomeIcon icon={faLinkedin} className="text-xl" />
+                </a>
+
                 <a
                   href="https://github.com/GaikawadaPrasad"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${getTheme
-                    ? "text-white hover:text-gray-300"
-                    : "text-black hover:text-gray-500"
-                    } transition-transform transform hover:scale-110`}
+                  aria-label="GitHub Profile"
+                  className={`p-3.5 rounded-full border transition-all duration-300 hover:scale-110 ${
+                    getTheme
+                      ? "bg-white/5 border-white/10 text-white hover:bg-white/15 hover:border-violet-500/50"
+                      : "bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200"
+                  }`}
                 >
-                  <FontAwesomeIcon icon={faGithub} size="2x" />
+                  <FontAwesomeIcon icon={faGithub} className="text-xl" />
+                </a>
+
+                <a
+                  href="https://www.instagram.com/princeprasad_1/profilecard/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram Profile"
+                  className={`p-3.5 rounded-full border transition-all duration-300 hover:scale-110 ${
+                    getTheme
+                      ? "bg-white/5 border-white/10 text-white hover:bg-white/15 hover:border-violet-500/50"
+                      : "bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200"
+                  }`}
+                >
+                  <FontAwesomeIcon icon={faInstagram} className="text-xl" />
                 </a>
 
                 <a
                   href="https://drive.google.com/file/d/1GiIQHGwUThnbyUcdNp-A2lFJq9RnSskq/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${getTheme
-                    ? "text-white hover:text-gray-300"
-                    : "text-black hover:text-gray-500"
-                    } transition-transform transform hover:scale-110`}
+                  aria-label="Resume Document"
+                  className={`p-3.5 rounded-full border transition-all duration-300 hover:scale-110 ${
+                    getTheme
+                      ? "bg-white/5 border-white/10 text-white hover:bg-white/15 hover:border-violet-500/50"
+                      : "bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200"
+                  }`}
                 >
-                  <FontAwesomeIcon icon={faFileAlt} size="2x" />
+                  <FontAwesomeIcon icon={faFileAlt} className="text-xl" />
                 </a>
-
-
               </div>
             </div>
           </div>

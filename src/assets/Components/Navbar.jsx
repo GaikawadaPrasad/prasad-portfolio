@@ -9,83 +9,94 @@ export const Navbar = ({ mobileView, setMobileView, darkMode, setDarkMode }) => 
     document.body.style.overflow = mobileView ? "hidden" : "";
   }, [mobileView]);
 
-  useEffect(()=>{
-    document.title = "Portfolio";
-  })
+  useEffect(() => {
+    document.title = "Prasad Gaikawada | Portfolio";
+  }, []);
 
   return (
-    <nav className="font-semibold text-[12.8px] fixed top-0 w-full z-40 bg-[rgba(10, 10, 10, 0.8)] backdrop-blur-lg border-b border-white/10 shadow-lg">
-      <div className="max-w-5xl mx-auto px-4">
+    <nav
+      className={`fixed top-0 w-full z-40 text-sm font-medium transition-colors duration-200 border-b backdrop-blur-md ${
+        darkMode
+          ? "bg-[#0a0a0a]/80 border-white/10 text-white"
+          : "bg-white/80 border-gray-200 text-gray-900 shadow-2xs"
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-6">
         <div className="flex justify-between items-center h-16">
           <a
             href="#home"
-            className={`font-mono text-xl font-bold ${
-              !darkMode ? "text-black" : "text-white"
-            }`}
+            className="text-base font-bold tracking-tight hover:opacity-80 transition-opacity"
           >
-            Prasad
+            Prasad Gaikawada
           </a>
 
-          <div
-            className={` w-7 h-5 relative cursor-pointer z-40 md:hidden font-mono text-xl font-bold ${
-              !darkMode ? "text-black" : "text-white"
-            }
-            `}
+          <button
+            type="button"
+            className="w-10 h-10 flex items-center justify-center rounded-lg md:hidden text-2xl focus:outline-none cursor-pointer"
             onClick={() => setMobileView((prev) => !prev)}
+            aria-label="Toggle navigation menu"
           >
             &#9776;
-          </div>
+          </button>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             <a
               href="#home"
-              className={` hover:text-white transition-colors ${
-                !darkMode ? "text-black" : "text-white"
-              } border-gray-400 duration-100 shadow-xl p-1 px-2 rounded`}
+              className={`transition-colors py-1 px-2.5 rounded-md ${
+                darkMode ? "text-gray-300 hover:text-white" : "text-gray-600 hover:text-black"
+              }`}
             >
               Home
             </a>
             <a
               href="#about"
-              className={` hover:text-white transition-colors ${
-                !darkMode ? "text-black" : "text-white"
-              } border-gray-400 duration-100 shadow-xl p-1 px-2 rounded`}
+              className={`transition-colors py-1 px-2.5 rounded-md ${
+                darkMode ? "text-gray-300 hover:text-white" : "text-gray-600 hover:text-black"
+              }`}
             >
               About
             </a>
             <a
-              href="#projects"
-              className={` hover:text-white transition-colors ${
-                !darkMode ? "text-black" : "text-white"
-              } border-gray-400 duration-100 shadow-xl p-1 px-2 rounded`}
-            >
-              Projects
-            </a>
-            <a
               href="#featured"
-              className={` hover:text-white transition-colors ${
-                !darkMode ? "text-black" : "text-white"
-              } border-gray-400 duration-100 shadow-xl p-1 px-2 rounded`}
+              className={`transition-colors py-1 px-2.5 rounded-md ${
+                darkMode ? "text-gray-300 hover:text-white" : "text-gray-600 hover:text-black"
+              }`}
             >
               Featured
             </a>
             <a
+              href="#projects"
+              className={`transition-colors py-1 px-2.5 rounded-md ${
+                darkMode ? "text-gray-300 hover:text-white" : "text-gray-600 hover:text-black"
+              }`}
+            >
+              All Projects
+            </a>
+            <a
               href="#contact"
-              className={`hover:text-white transition-colors ${
-                !darkMode ? "text-black" : "text-gray/900 "
-              } border-gray-400 duration-100 shadow-xl p-1 px-2 rounded`}
+              className={`transition-colors py-1 px-2.5 rounded-md ${
+                darkMode ? "text-gray-300 hover:text-white" : "text-gray-600 hover:text-black"
+              }`}
             >
               Contact
             </a>
 
-            <div onClick={changeMode}>
+            <button
+              type="button"
+              onClick={changeMode}
+              className={`p-2 rounded-lg border transition-all duration-200 cursor-pointer ${
+                darkMode
+                  ? "border-white/10 bg-white/5 text-yellow-400 hover:bg-white/10"
+                  : "border-gray-200 bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+              aria-label="Toggle light and dark mode"
+              title="Toggle theme"
+            >
               <FontAwesomeIcon
-                icon={!darkMode ? faSun : faMoon}
-                className={` ${
-                  !darkMode ? "text-black" : "text-gray"
-                } duration-100 shadow-xl p-1 px-2 `}
+                icon={darkMode ? faSun : faMoon}
+                className="w-4 h-4"
               />
-            </div>
+            </button>
           </div>
         </div>
       </div>

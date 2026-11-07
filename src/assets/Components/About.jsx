@@ -1,23 +1,43 @@
 import { useEffect } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
+import { techColor } from "../../utils/techColors";
 
 export const About = ({ getTheme }) => {
-
+  const SkillBadge = ({ label }) => {
+    const color = techColor(label);
+    return (
+      <span
+        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium border ${
+          getTheme
+            ? "bg-white/5 text-gray-200 border-white/10"
+            : "bg-gray-100 text-gray-800 border-gray-200"
+        }`}
+      >
+        <span
+          className="w-2 h-2 rounded-full shrink-0"
+          style={{ backgroundColor: color }}
+        />
+        {label}
+      </span>
+    );
+  };
 
   const SkillCard = ({ title, skills }) => (
     <div
-      className={`p-6 rounded-xl ${
-        getTheme ? "bg-linear-to-t from-black to-[#5b5a5a24]" : "bg-black/5"
-      } hover:-translate-y-1 transition-transform duration-300 shadow-md max-w-full`}
+      className={`p-5 rounded-xl border ${
+        getTheme
+          ? "bg-white/5 border-white/10"
+          : "bg-white border-gray-200 shadow-xs"
+      }`}
     >
       <h3
-        className={`text-xl font-semibold ${
-          getTheme ? "text-white" : "text-black"
-        } mb-4`}
+        className={`text-base font-bold mb-3 ${
+          getTheme ? "text-white" : "text-gray-900"
+        }`}
       >
         {title}
       </h3>
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-2">
         {skills.map((label) => (
           <SkillBadge key={label} label={label} />
         ))}
@@ -25,85 +45,80 @@ export const About = ({ getTheme }) => {
     </div>
   );
 
-  const SkillBadge = ({ label }) => (
-    <span
-      className={`bg-linear-to-t from-black to-[#5b5a5a3e] ${
-        getTheme ? "text-white hover:bg-black" : "text-black hover:bg-white"
-      } py-1 px-3 rounded-full text-sm font-medium shadow-sm hover:bg-black hover:shadow-white/30`}
-    >
-      {label}
-    </span>
-  );
-
   useEffect(() => {
     const cards = document.querySelectorAll(".about-card");
-  
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("show");
-          }else{
+          } else {
             entry.target.classList.remove("show");
           }
         });
       },
       { threshold: 0.2 }
     );
-  
+
     cards.forEach((card) => observer.observe(card));
-  
     return () => observer.disconnect();
   }, []);
-    
+
   return (
     <RevealOnScroll>
       <section
         id="about"
-        className={`min-h-screen flex items-center py-20 px-6 md:px-12 animation-slide ${
+        className={`py-20 px-6 md:px-12 animation-slide ${
           getTheme
-            ? " bg-linear-to-t from-[#5b5a5a3e] via-black to-[#5b5a5a3e]"
-            : "bg-linear-to-t from-black-900 to-white"
+            ? "bg-[#0a0a0a] text-white"
+            : "bg-gray-50 text-gray-900"
         }`}
       >
-        <div className="w-full max-w-7xl">
-          <h2
-            className={`text-4xl font-extrabold mb-10 ${
-              getTheme ? "text-white" : "text-black"
-            } text-left`}
-          >
-            About Me
-          </h2>
+        <div className="w-full max-w-5xl mx-auto">
+          <div className="mb-8">
+            <h2
+              className={`text-3xl md:text-4xl font-extrabold tracking-tight mb-2 ${
+                getTheme ? "text-white" : "text-gray-900"
+              }`}
+            >
+              About Me
+            </h2>
+            <p className={`text-sm ${getTheme ? "text-gray-400" : "text-gray-600"}`}>
+              My background, experience, and the tools I use daily
+            </p>
+          </div>
 
           <div
-            className={` about-card bg-white/5 backdrop-blur-md rounded-2xl py-10 px-10 shadow-lg max-w-full ${
-              getTheme ? "bg-white/5" : "bg-black/5"
+            className={`about-card rounded-2xl p-6 md:p-8 border ${
+              getTheme
+                ? "bg-white/5 border-white/10"
+                : "bg-white border-gray-200 shadow-xs"
             }`}
           >
             <p
-              className={`${
-                getTheme ? "text-white-300" : "text-gray-700"
-              } mb-8 leading-relaxed text-base text-left max-w-4xl`}
+              className={`mb-8 leading-relaxed text-base max-w-3xl ${
+                getTheme ? "text-gray-300" : "text-gray-700"
+              }`}
             >
-              Passionate front-end developer focused on building engaging,
-              user-friendly web experiences. I also work with Python and Java
-              for backend logic and scripting, and I'm always exploring new
-              tools and technologies to grow my skills.
+              I am a developer focused on building functional, reliable applications. I spend most of my time writing MERN stack software, designing REST APIs, and connecting hardware sensors with cloud databases. Whether it's building a daily-use billing system for a local café or developing real-time anomaly detection for electrical appliances, I enjoy working on projects that solve practical problems.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl">
-              <SkillCard title="Frontend" skills={["HTML5", "CSS3", "React"]} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <SkillCard
+                title="Frontend"
+                skills={["React.js", "Vite", "Tailwind CSS", "HTML5", "CSS3"]}
+              />
               <SkillCard
                 title="Backend"
-                skills={["Node.js", "Python", "Express.js"]}
+                skills={["Node.js", "Express.js", "REST APIs", "Socket.io", "Python", "Java"]}
               />
               <SkillCard
-                title="Database"
-                skills={["MongoDB", "Mongoose", "Xmapp"]}
+                title="Database & Storage"
+                skills={["MongoDB", "Mongoose", "Firebase", "IndexedDB"]}
               />
               <SkillCard
-                title="Tools & Platforms"
-                skills={["Git", "GitHub", "Postman"]}
+                title="Hardware & Tools"
+                skills={["ESP32", "IoT Sensors", "Capacitor", "Git", "Postman"]}
               />
             </div>
           </div>

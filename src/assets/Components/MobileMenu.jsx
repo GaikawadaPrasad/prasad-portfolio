@@ -3,12 +3,16 @@ import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 
 export const MobileMenu = ({ mobileView, setMobileView, darkMode, setDarkMode }) => {
   const changeMode = () => setDarkMode((prev) => !prev);
-  
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full bg-[rgba(10,10,10,0.8)] z-40 flex flex-col items-center justify-center
-                  transition-all duration-300 ease-in-out
+      className={`fixed top-0 left-0 w-full z-50 flex flex-col items-center justify-center
+                  transition-all duration-300 ease-in-out backdrop-blur-xl
+                  ${
+                    darkMode
+                      ? "bg-black/90 text-white"
+                      : "bg-white/95 text-gray-900"
+                  }
                   ${
                     mobileView
                       ? "h-screen opacity-100 pointer-events-auto"
@@ -17,75 +21,64 @@ export const MobileMenu = ({ mobileView, setMobileView, darkMode, setDarkMode })
     >
       <button
         onClick={() => setMobileView(false)}
-        className="absolute top-6 right-6 text-white text-3xl focus:outline-none cursor-pointer"
+        className="absolute top-6 right-6 text-3xl focus:outline-none cursor-pointer p-2 hover:opacity-75"
         aria-label="Close Menu"
       >
         &times;
       </button>
 
-      <a
-        href="#home"
-        onClick={() => setMobileView(false)}
-        className={`text-xl font-semibold text-white my-4 transition-colors duration-200
-                    ${darkMode ? "text-black" : "text-white"}
-                    hover:text-white`}
-      >
-        Home
-      </a>
-      <a
-        href="#about"
-        onClick={() => setMobileView(false)}
-        className={`text-xl font-semibold text-white my-4 transition-colors duration-200
-                    ${darkMode ? "text-black" : "text-white"}
-                    hover:text-white`}
-      >
-        About
-      </a>
-      <a
-        href="#projects"
-        onClick={() => setMobileView(false)}
-        className={`text-xl font-semibold text-white my-4 transition-colors duration-200
-                    ${darkMode ? "text-black" : "text-white"}
-                    hover:text-white`}
-      >
-        Projects
-      </a>
-      <a
-        href="#featured"
-        onClick={() => setMobileView(false)}
-        className={`text-xl font-semibold text-white my-4 transition-colors duration-200
-                    ${darkMode ? "text-black" : "text-white"}
-                    hover:text-white`}
-      >
-        Featured
-      </a>
-      <a
-        href="#contact"
-        onClick={() => setMobileView(false)}
-        className={`text-xl font-semibold text-white my-4 transition-colors duration-200
-                    ${darkMode ? "text-black" : "text-white"}
-                    hover:text-white`}
-      >
-        Contact
-      </a>
+      <div className="flex flex-col items-center space-y-6 text-center">
+        <a
+          href="#home"
+          onClick={() => setMobileView(false)}
+          className="text-2xl font-semibold hover:text-violet-500 transition-colors"
+        >
+          Home
+        </a>
+        <a
+          href="#about"
+          onClick={() => setMobileView(false)}
+          className="text-2xl font-semibold hover:text-violet-500 transition-colors"
+        >
+          About
+        </a>
+        <a
+          href="#featured"
+          onClick={() => setMobileView(false)}
+          className="text-2xl font-semibold hover:text-violet-500 transition-colors"
+        >
+          Featured
+        </a>
+        <a
+          href="#projects"
+          onClick={() => setMobileView(false)}
+          className="text-2xl font-semibold hover:text-violet-500 transition-colors"
+        >
+          All Projects
+        </a>
+        <a
+          href="#contact"
+          onClick={() => setMobileView(false)}
+          className="text-2xl font-semibold hover:text-violet-500 transition-colors"
+        >
+          Contact
+        </a>
 
-      <div
-        onClick={() => {
-          changeMode();
-          setMobileView(false);
-        }}
-        className={`mt-4 p-2 cursor-pointer rounded-full transition-colors duration-200
-                    ${
-                      darkMode
-                        ? "text-black bg-white"
-                        : "text-gray-300 bg-gray-800"
-                    }`}
-      >
-        {darkMode ? "Light Theme" : "Dark Mode"}
-        <FontAwesomeIcon
-          icon={darkMode ? faSun : faMoon}
-          className="text-2xl"
-        />
+        <button
+          onClick={() => {
+            changeMode();
+            setMobileView(false);
+          }}
+          className={`mt-6 px-6 py-2.5 rounded-full font-medium flex items-center gap-3 border transition-all cursor-pointer ${
+            darkMode
+              ? "bg-white/10 border-white/20 text-white hover:bg-white/20"
+              : "bg-gray-100 border-gray-300 text-gray-800 hover:bg-gray-200"
+          }`}
+          aria-label="Toggle theme"
+        >
+          <span>{darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}</span>
+          <FontAwesomeIcon icon={darkMode ? faSun : faMoon} className="text-lg" />
+        </button>
       </div>
     </div>
   );

@@ -1,196 +1,10 @@
 import { useEffect, useState } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
-
-const techColor = (tech) => {
-  const map = {
-    "React.js": "#61DAFB",
-    "Node.js": "#68A063",
-    "Express.js": "#888",
-    MongoDB: "#47A248",
-    "Socket.io": "#fff",
-    Firebase: "#FFCA28",
-    "Firebase Auth": "#FFCA28",
-    "Firebase Database": "#FFA000",
-    Python: "#3776AB",
-    "Machine Learning": "#FF6B6B",
-    "Chart.js": "#FF6384",
-    ESP32: "#E7352C",
-    "IoT Sensors": "#00BCD4",
-    "Tailwind CSS": "#38BDF8",
-    "JWT Auth": "#D4AC0D",
-    "Framer Motion": "#BB6BD9",
-    "Cloudinary API": "#3448C5",
-    Zustand: "#FF7043",
-    Capacitor: "#119EFF",
-    "Android SDK": "#3DDC84",
-    Java: "#F89820",
-    "Spring Boot": "#6DB33F",
-    "REST API": "#FF9800",
-    "React Router": "#CA4245",
-    Vite: "#646CFF",
-    "dnd-kit": "#FF6B35",
-    IndexedDB: "#7C4DFF",
-    Mongoose: "#880000",
-    "React Hot Toast": "#FF6B6B",
-    RoughJS: "#F5A623",
-    "HTML5 Canvas": "#E44D26",
-    "LocalStorage API": "#4CAF50",
-    "Gemini API": "#4285F4",
-    "Monaco Editor": "#0078D4",
-  };
-  return map[tech] || "#9CA3AF";
-};
-
-const FeaturedCard = ({ project, getTheme, reverse }) => {
-  const [activeImg, setActiveImg] = useState(0);
-
-  return (
-    <div
-      className={`group flex flex-col ${
-        reverse ? "lg:flex-row-reverse" : "lg:flex-row"
-      } gap-8 rounded-2xl border p-6 md:p-8 transition-all duration-500 hover:shadow-2xl ${
-        getTheme
-          ? "bg-white/5 border-white/10 hover:border-white/20"
-          : "bg-white border-gray-200 hover:border-gray-300 shadow-sm"
-      }`}
-      style={{
-        boxShadow: `0 0 0 0 ${project.glowColor}`,
-        transition: "box-shadow 0.4s ease",
-      }}
-      onMouseEnter={(e) =>
-        (e.currentTarget.style.boxShadow = `0 8px 40px 0 ${project.glowColor}`)
-      }
-      onMouseLeave={(e) =>
-        (e.currentTarget.style.boxShadow = `0 0 0 0 ${project.glowColor}`)
-      }
-    >
-      {/* ── Image panel ── */}
-      <div className="lg:w-[48%] shrink-0">
-        <div className="relative rounded-xl overflow-hidden aspect-video ring-1 ring-white/10 shadow-xl">
-          <img
-            src={project.images[activeImg]}
-            alt={project.title}
-            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-          />
-          <div
-            className={`absolute inset-0 bg-linear-to-t ${project.accent} opacity-10 pointer-events-none`}
-          />
-        </div>
-
-        {/* Thumbnails */}
-        {project.images.length > 1 && (
-          <div className="flex gap-2 mt-3">
-            {project.images.map((img, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveImg(i)}
-                className={`flex-1 aspect-video rounded-lg overflow-hidden ring-2 transition-all duration-200 ${
-                  activeImg === i
-                    ? "ring-violet-400 opacity-100"
-                    : "ring-transparent opacity-50 hover:opacity-75"
-                }`}
-              >
-                <img
-                  src={img}
-                  alt={`thumb-${i}`}
-                  className="w-full h-full object-cover object-top"
-                />
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* ── Content panel ── */}
-      <div className="flex flex-col justify-between flex-1">
-        <div>
-          {/* Badge */}
-          <span
-            className={`inline-block text-xs font-semibold tracking-widest uppercase mb-3 px-3 py-1 rounded-full bg-linear-to-r ${project.accent} text-white shadow`}
-          >
-            {project.badge}
-          </span>
-
-          <h3
-            className={`text-2xl md:text-3xl font-extrabold leading-tight mb-1 ${getTheme ? "text-white" : "text-gray-900"}`}
-          >
-            {project.title}
-          </h3>
-          <p
-            className={`text-sm font-semibold mb-4 bg-linear-to-r ${project.accent} bg-clip-text text-transparent`}
-          >
-            {project.subtitle}
-          </p>
-          <p
-            className={`text-sm leading-relaxed mb-6 ${getTheme ? "text-gray-400" : "text-gray-600"}`}
-          >
-            {project.desc}
-          </p>
-        </div>
-
-        <div>
-          {/* Tech stack */}
-          <div className="flex flex-wrap gap-2 mb-6">
-            {project.techs.map((tech) => (
-              <span
-                key={tech}
-                className={`text-xs font-semibold px-3 py-1 rounded-full border transition-all duration-200 hover:scale-105 cursor-default ${
-                  getTheme
-                    ? "bg-white/5 text-gray-300 hover:bg-white/10"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
-                style={{ borderColor: `${techColor(tech)}44` }}
-              >
-                <span
-                  className="inline-block w-1.5 h-1.5 rounded-full mr-1.5 align-middle"
-                  style={{ backgroundColor: techColor(tech) }}
-                />
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          {project.link ? (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-sm text-white bg-linear-to-r ${project.accent} shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl`}
-            >
-              View Project <span>→</span>
-            </a>
-          ) : (
-            <span
-              className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-sm border ${
-                getTheme
-                  ? "border-white/20 text-gray-500"
-                  : "border-gray-300 text-gray-400"
-              }`}
-            >
-              Private / Confidential
-            </span>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
+import { techColor } from "../../utils/techColors";
 
 export const Projects = ({ getTheme }) => {
   const [showMore, setShowMore] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All");
-  const AllCategories = [
-    "All",
-    "Web Development",
-    "Mobile Development",
-    "Full Stack",
-    "IoT",
-    "Interactive Web Application",
-  ];
-
-  useEffect(() => {
-    console.log("category", activeCategory);
-  }, [activeCategory]);
 
   useEffect(() => {
     const cards = document.querySelectorAll(".project-card");
@@ -204,7 +18,7 @@ export const Projects = ({ getTheme }) => {
           }
         });
       },
-      { threshold: 0.3 },
+      { threshold: 0.2 }
     );
     cards.forEach((card) => observer.observe(card));
     return () => observer.disconnect();
@@ -213,7 +27,7 @@ export const Projects = ({ getTheme }) => {
   const projectsCard1 = [
     {
       title: "FitTrack - Smart Fitness Companion",
-      desc: "A fully responsive fitness-tracking dashboard built with React and Firebase. Calculates custom biological metrics including BMI, BMR, and TDEE based on physical attributes and daily activity factors. Features interactive progress charts powered by Chart.js, and an automated milestone engine that records fitness progress over time.",
+      desc: "A fully responsive fitness-tracking dashboard built with React and Firebase. Calculates custom biological metrics including BMI, BMR, and TDEE based on physical attributes and daily activity factors. Features interactive progress charts powered by Chart.js, and an automated milestone engine.",
       techs: [
         "React.js",
         "Firebase Auth",
@@ -294,7 +108,7 @@ export const Projects = ({ getTheme }) => {
     {
       id: 1,
       title: "AI-Based IoT System for Early Failure Detection",
-      desc: "Developed an AI-powered IoT system to monitor electrical appliances using current, voltage, temperature, and vibration sensors. Built a React.js dashboard with Chart.js for real-time monitoring, appliance health analysis, and visualization of sensor data. Integrated ESP32 with Firebase for live data collection, cloud storage, and remote monitoring. Implemented machine learning models for anomaly detection and early prediction of appliance failures to support preventive maintenance.",
+      desc: "Developed an AI-powered IoT system to monitor electrical appliances using current, voltage, temperature, and vibration sensors. Built a React.js dashboard with Chart.js for real-time monitoring, appliance health analysis, and visualization of sensor data.",
       techs: [
         "React.js",
         "Chart.js",
@@ -323,179 +137,148 @@ export const Projects = ({ getTheme }) => {
     },
     {
       title: "Whiteboard Drawing App",
-      desc: "A minimalistic and responsive whiteboard application inspired by Excalidraw, built with React and RoughJS. Supports freehand drawing, lines, rectangles, ellipses, customizable stroke styles, color selection, undo functionality, JSON export/import, and local persistence for saving and restoring drawings.",
+      desc: "A minimalistic and responsive whiteboard application inspired by Excalidraw, built with React and RoughJS. Supports freehand drawing, lines, rectangles, ellipses, customizable stroke styles, color selection, undo functionality, and local persistence.",
       techs: ["React.js", "RoughJS", "HTML5 Canvas", "LocalStorage", "CSS"],
+      category: "Interactive Web Application",
       link: "https://vdp-white-board.vercel.app/",
     },
   ];
 
-  const cardClass = (getTheme) =>
-    `project-card ${
-      getTheme
-        ? "bg-linear-to-t from-black to-[#5b5a5a3f] border-white/20 text-white hover:border-white/40 hover:shadow-md"
-        : "bg-white/10 border-black/20 text-white hover:border-black/40 hover:shadow-md"
-    } p-6 rounded-xl hover:-translate-y-1 transition-all duration-300`;
+  const renderCard = (project) => {
+    const { title, desc, techs, category, link } = project;
+    if (activeCategory !== "All" && category !== activeCategory) return null;
 
-  const renderCard = ({ title, desc, techs, category, link }) => (
-    <div>
-      {" "}
-      {activeCategory === "All" ? (
-        <div key={title} className={cardClass(getTheme)}>
+    return (
+      <div
+        key={title}
+        className={`project-card group flex flex-col justify-between p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
+          getTheme
+            ? "bg-white/5 border-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-violet-500/5"
+            : "bg-white border-slate-200 shadow-xs hover:shadow-md hover:border-slate-300"
+        }`}
+      >
+        <div>
           <h3
-            className={`text-xl font-bold mb-2 ${getTheme ? "text-white" : "text-black"}`}
+            className={`text-xl font-bold mb-3 group-hover:text-violet-400 transition-colors ${
+              getTheme ? "text-white" : "text-slate-900"
+            }`}
           >
             {title}
           </h3>
-          <p className={`${getTheme ? "text-gray-300" : "text-gray-700"} mb-4`}>
+
+          <p
+            className={`text-sm leading-relaxed mb-6 ${
+              getTheme ? "text-gray-300" : "text-slate-600"
+            }`}
+          >
             {desc}
           </p>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {techs.map((tech) => (
-              <span
-                key={tech}
-                className={`${
-                  getTheme
-                    ? "bg-white/10 text-white hover:bg-black hover:shadow-white/30"
-                    : "bg-black/10 text-black hover:bg-white hover:shadow-black/30"
-                } py-1 px-3 rounded-xl text-sm font-medium shadow-sm`}
-              >
-                {tech}
-              </span>
-            ))}
+        </div>
+
+        <div>
+          <div className="flex flex-wrap gap-2 mb-6">
+            {techs.map((tech) => {
+              const color = techColor(tech);
+              return (
+                <span
+                  key={tech}
+                  className={`text-xs font-semibold px-3 py-1 rounded-full border transition-transform duration-150 hover:scale-105 ${
+                    getTheme
+                      ? "bg-white/5 text-gray-200 border-white/10"
+                      : "bg-slate-100 text-slate-700 border-slate-200"
+                  }`}
+                  style={{ borderColor: `${color}44` }}
+                >
+                  <span
+                    className="inline-block w-1.5 h-1.5 rounded-full mr-1.5 align-middle"
+                    style={{ backgroundColor: color }}
+                  />
+                  {tech}
+                </span>
+              );
+            })}
           </div>
+
           <a
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className={`inline-block ${
+            className={`inline-flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-semibold border transition-all duration-200 ${
               getTheme
-                ? "text-white hover:text-gray-300"
-                : "text-black hover:text-gray-600"
-            } transition-color`}
+                ? "border-white/20 text-white hover:bg-white hover:text-black"
+                : "border-slate-300 text-slate-800 hover:bg-slate-900 hover:text-white"
+            }`}
           >
-            <div
-              className={`flex items-center gap-3 border rounded-xl px-6 py-2 ${
-                getTheme
-                  ? "border-white/50 hover:border-black/50 hover:bg-white hover:text-black hover:shadow-white"
-                  : "border-black/50 hover:border-white/50 hover:bg-black hover:text-white hover:shadow-black"
-              }`}
-            >
-              View Project <span className="text-2xl">&rarr;</span>
-            </div>
+            View Project <span>→</span>
           </a>
         </div>
-      ) : (
-        category === activeCategory && (
-          <div key={title} className={cardClass(getTheme)}>
-            <h3
-              className={`text-xl font-bold mb-2 ${getTheme ? "text-white" : "text-black"}`}
-            >
-              {title}
-            </h3>
-            <p
-              className={`${getTheme ? "text-gray-300" : "text-gray-700"} mb-4`}
-            >
-              {desc}
-            </p>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {techs.map((tech) => (
-                <span
-                  key={tech}
-                  className={`${
-                    getTheme
-                      ? "bg-white/10 text-white hover:bg-black hover:shadow-white/30"
-                      : "bg-black/10 text-black hover:bg-white hover:shadow-black/30"
-                  } py-1 px-3 rounded-xl text-sm font-medium shadow-sm`}
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-block ${
-                getTheme
-                  ? "text-white hover:text-gray-300"
-                  : "text-black hover:text-gray-600"
-              } transition-color`}
-            >
-              <div
-                className={`flex items-center gap-3 border rounded-xl px-6 py-2 ${
-                  getTheme
-                    ? "border-white/50 hover:border-black/50 hover:bg-white hover:text-black hover:shadow-white"
-                    : "border-black/50 hover:border-white/50 hover:bg-black hover:text-white hover:shadow-black"
-                }`}
-              >
-                View Project <span className="text-2xl">&rarr;</span>
-              </div>
-            </a>
-          </div>
-        )
-      )}
-    </div>
-  );
+      </div>
+    );
+  };
 
   return (
     <RevealOnScroll>
       <section
         id="projects"
-        className={`scroll-mt-20 min-h-screen py-20 px-6 md:px-12 animation-slide ${
+        className={`py-24 px-6 md:px-12 scroll-mt-10 ${
           getTheme
-            ? "bg-linear-to-t from-[#5b5a5a3e] via-black to-[#5b5a5a3e]"
-            : "bg-linear-to-t from-black-900 to-white"
+            ? "bg-black text-white"
+            : "bg-slate-50 text-slate-900"
         }`}
       >
-        <div className="max-w-7xl w-full">
-          <h2
-            className={`text-4xl font-extrabold mb-10 ${getTheme ? "text-white" : "text-black"} text-left`}
-          >
-            Projects
-          </h2>
-          {/* <div className="catogory max-w-7xl w-full flex gap-4 mb-8 overflow-scroll scrollbar-hide">
-            {AllCategories.map((category) => {
-              return (
-                <button
-                  className={`catogory-btn px-4 py-2 rounded-xl ${getTheme ? "bg-white/10 text-white" : "bg-black/10 text-black"}`}
-                  onClick={() => setActiveCategory(category)}
-                >
-                  {category}
-                </button>
-              );
-            })}
-          </div> */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-full">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-12">
+            <h2
+              className={`text-3xl md:text-5xl font-extrabold mb-3 tracking-tight ${
+                getTheme ? "text-white" : "text-slate-900"
+              }`}
+            >
+              All Projects
+            </h2>
+            <p
+              className={`text-sm md:text-base ${
+                getTheme ? "text-gray-400" : "text-slate-600"
+              }`}
+            >
+              Explore my full catalog of web applications, mobile builds, and open-source code
+            </p>
+            <div className="w-20 h-1.5 bg-violet-600 rounded-full mt-4" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projectsCard1.map(renderCard)}
           </div>
 
-          <div>
-            {showMore && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-full mt-6">
-                {projectsCard2.map(renderCard)}
-              </div>
-            )}
-          </div>
+          {showMore && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+              {projectsCard2.map(renderCard)}
+            </div>
+          )}
 
-          <button
-            type="button"
-            className={`w-full py-3 mt-6 px-6 rounded font-medium transition ${
-              getTheme
-                ? "bg-linear-to-t from-black to-[#5b5a5a4b] ml-2 text-white border rounded-xl border-[#5b5a5a55] hover:bg-white hover:text-black active:bg-gray-300"
-                : "bg-white text-black border rounded-xl border-black hover:bg-black hover:text-white active:bg-gray-900"
-            }`}
-            onClick={() => {
-              if (showMore) {
-                window.scrollTo({
-                  top: document.getElementById("projects").offsetTop,
-                  behavior: "smooth",
-                });
-              }
-              setShowMore(!showMore);
-            }}
-          >
-            {showMore ? "Show Less" : "Show More"}
-          </button>
+          <div className="mt-10 text-center">
+            <button
+              type="button"
+              className={`px-8 py-3 rounded-xl font-semibold border transition-all duration-300 cursor-pointer ${
+                getTheme
+                  ? "bg-white/5 border-white/15 text-white hover:bg-white/10 hover:border-white/30"
+                  : "bg-white border-slate-300 text-slate-800 shadow-xs hover:bg-slate-900 hover:text-white"
+              }`}
+              onClick={() => {
+                if (showMore) {
+                  const elem = document.getElementById("projects");
+                  if (elem) {
+                    window.scrollTo({
+                      top: elem.offsetTop - 80,
+                      behavior: "smooth",
+                    });
+                  }
+                }
+                setShowMore(!showMore);
+              }}
+            >
+              {showMore ? "Show Less Projects" : "Show More Projects"}
+            </button>
+          </div>
         </div>
       </section>
     </RevealOnScroll>
