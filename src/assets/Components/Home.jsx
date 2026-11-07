@@ -1,9 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
+import { motion as Motion } from "framer-motion";
 
 export const Home = ({ getTheme }) => {
+  const fullRole = "Full-Stack & Hardware Developer";
+  const [typedRole, setTypedRole] = useState("");
+
   useEffect(() => {
     document.title = "Prasad | Developer Portfolio";
+
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index <= fullRole.length) {
+        setTypedRole(fullRole.slice(0, index));
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 45);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -17,47 +33,73 @@ export const Home = ({ getTheme }) => {
         }`}
       >
         <div className="z-10 px-4 w-full max-w-4xl text-center">
-          <p
-            className={`font-mono text-xs sm:text-sm uppercase tracking-widest mb-4 ${
-              getTheme ? "text-neutral-400" : "text-neutral-600"
+          {/* Monospace terminal-style role tag */}
+          <Motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className={`font-mono text-xs sm:text-sm uppercase tracking-widest mb-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border ${
+              getTheme
+                ? "bg-white/5 border-white/10 text-neutral-400"
+                : "bg-neutral-100 border-neutral-200 text-neutral-600"
             }`}
           >
-            Full-Stack & Hardware Developer
-          </p>
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>{typedRole}</span>
+            <span className="animate-blink font-bold">_</span>
+          </Motion.div>
 
-          <h1
+          {/* Heading */}
+          <Motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className={`text-5xl sm:text-7xl font-extrabold mb-6 tracking-tight ${
               getTheme ? "text-white" : "text-neutral-900"
             }`}
           >
             Hi, I'm Prasad
-          </h1>
+          </Motion.h1>
 
-          <p
+          {/* Bio text */}
+          <Motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
             className={`text-lg sm:text-xl mb-10 mx-auto max-w-2xl leading-relaxed ${
               getTheme ? "text-neutral-300" : "text-neutral-600"
             }`}
           >
             I'm a Web Developer passionate about building fast, engaging web apps, practical full-stack systems, and IoT projects with clean, reliable code.
-          </p>
+          </Motion.p>
 
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <a
+          {/* Action CTAs with spring micro-interactions */}
+          <Motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="flex flex-col sm:flex-row justify-center items-center gap-4"
+          >
+            <Motion.a
               href="#featured"
-              className={`w-full sm:w-auto inline-flex justify-center items-center gap-2 py-3.5 px-8 rounded-xl font-semibold text-sm transition-all duration-200 ${
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              className={`w-full sm:w-auto inline-flex justify-center items-center gap-2 py-3.5 px-8 rounded-xl font-semibold text-sm transition-colors duration-200 ${
                 getTheme
                   ? "bg-white text-black hover:bg-neutral-200"
                   : "bg-black text-white hover:bg-neutral-800"
               }`}
             >
               View Projects &rarr;
-            </a>
+            </Motion.a>
 
-            <a
+            <Motion.a
               href="https://drive.google.com/file/d/1GiIQHGwUThnbyUcdNp-A2lFJq9RnSskq/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-full sm:w-auto inline-flex justify-center items-center gap-2 py-3.5 px-8 rounded-xl font-semibold text-sm border transition-all duration-200 ${
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              className={`w-full sm:w-auto inline-flex justify-center items-center gap-2 py-3.5 px-8 rounded-xl font-semibold text-sm border transition-colors duration-200 ${
                 getTheme
                   ? "border-white/20 bg-white/5 text-white hover:bg-white/10 hover:border-white/30"
                   : "border-neutral-300 bg-white text-neutral-800 hover:bg-neutral-100"
@@ -78,8 +120,8 @@ export const Home = ({ getTheme }) => {
                 />
               </svg>
               View Resume
-            </a>
-          </div>
+            </Motion.a>
+          </Motion.div>
         </div>
       </section>
     </RevealOnScroll>
