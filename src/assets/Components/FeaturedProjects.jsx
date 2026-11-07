@@ -10,6 +10,7 @@ import Muscle_UP_CAFE3 from "../../images/Muscle_UP_CAFE3.png";
 import { useState } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
 import { techColor } from "../../utils/techColors";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 
 const FeaturedCard = ({ project, getTheme, reverse }) => {
   const [activeImg, setActiveImg] = useState(0);
@@ -28,21 +29,30 @@ const FeaturedCard = ({ project, getTheme, reverse }) => {
         {/* Image panel */}
         <div className="lg:w-[48%] shrink-0 flex flex-col justify-between">
           <div className="relative rounded-xl overflow-hidden aspect-video border border-neutral-700/20 shadow-sm bg-neutral-900">
-            <img
-              src={project.images[activeImg]}
-              alt={project.title}
-              className="w-full h-full object-cover object-top"
-            />
+            <AnimatePresence mode="wait">
+              <Motion.img
+                key={activeImg}
+                src={project.images[activeImg]}
+                alt={project.title}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                className="w-full h-full object-cover object-top"
+              />
+            </AnimatePresence>
           </div>
 
           {/* Thumbnails */}
           {project.images.length > 1 && (
             <div className="flex gap-2 mt-3">
               {project.images.map((img, i) => (
-                <button
+                <Motion.button
                   key={i}
                   type="button"
                   onClick={() => setActiveImg(i)}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
                   className={`flex-1 aspect-video rounded-lg overflow-hidden border transition-all duration-150 cursor-pointer ${
                     activeImg === i
                       ? getTheme
@@ -57,7 +67,7 @@ const FeaturedCard = ({ project, getTheme, reverse }) => {
                     alt={`${project.title} thumbnail ${i + 1}`}
                     className="w-full h-full object-cover object-top"
                   />
-                </button>
+                </Motion.button>
               ))}
             </div>
           )}
