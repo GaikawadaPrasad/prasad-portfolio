@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
 import { techColor } from "../../utils/techColors";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 
 export const Projects = ({ getTheme }) => {
   const [showMore, setShowMore] = useState(false);
@@ -163,9 +164,15 @@ export const Projects = ({ getTheme }) => {
     const { title, desc, techs, link } = project;
 
     return (
-      <div
+      <Motion.div
+        layout
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.96 }}
+        transition={{ duration: 0.25 }}
+        whileHover={{ y: -4 }}
         key={title}
-        className={`project-card group flex flex-col justify-between p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
+        className={`project-card group flex flex-col justify-between p-6 rounded-2xl border transition-colors duration-300 ${
           getTheme
             ? "bg-white/5 border-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-white/5"
             : "bg-white border-neutral-200 shadow-xs hover:border-neutral-300"
@@ -226,7 +233,7 @@ export const Projects = ({ getTheme }) => {
             View Project &rarr;
           </a>
         </div>
-      </div>
+      </Motion.div>
     );
   };
 
@@ -262,11 +269,12 @@ export const Projects = ({ getTheme }) => {
           {/* Category Filter Pills */}
           <div className="flex flex-wrap gap-2 mb-10">
             {categories.map((cat) => (
-              <button
+              <Motion.button
                 key={cat}
                 type="button"
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-medium transition-all duration-200 cursor-pointer border ${
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-medium transition-colors duration-200 cursor-pointer border ${
                   activeCategory === cat
                     ? getTheme
                       ? "bg-white text-black border-white shadow-sm"
@@ -277,13 +285,15 @@ export const Projects = ({ getTheme }) => {
                 }`}
               >
                 {cat}
-              </button>
+              </Motion.button>
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {displayedProjects.map(renderCard)}
-          </div>
+          <Motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <AnimatePresence mode="popLayout">
+              {displayedProjects.map(renderCard)}
+            </AnimatePresence>
+          </Motion.div>
 
           {activeCategory === "All" && (
             <div className="mt-10 text-center">
